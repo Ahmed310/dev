@@ -1,0 +1,14 @@
+---
+const base = import.meta.env.BASE_URL;          // e.g. "/dev/"
+const b = base.replace(/\/$/, '');               // "/dev"
+const to = (seg: string) => (seg === '' ? base : `${b}/${seg}`);
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (seg: string) => path === (seg === '' ? (b || '/') : `${b}/${seg}`);
+---
+<nav>
+  <div class="wrap">
+    <a class="brand" href={to('')}>muhammad<span class="dot">.</span>ahmed</a>
+    <div class="navlinks">
+      <a href={to('')} class={isActive('') ? 'active' : ''}>home</a>
+      <a href={to('about')} class={isActive('about') ? 'active' : ''}>about</a>
+ 

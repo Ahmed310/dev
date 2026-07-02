@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+
+const flagships = [
+  {
+    role: 'immersed · senior software developer',
+    name: 'Entangle at Immersed',
+    blurb: 'Replaced third-party networking with my own stack across a VR metaverse platform, holding 100+ users in one room and cutting infrastructure cost ~65%.',
+    tags: 'C# · .NET · AOI · VoIP · AWS',
+  },
+  {
+    role: 'arthur · senior software developer',
+    name: 'Scaling VR meetings',
+    blurb: 'Network LOD and networking optimizations to fit 100+ people in a single VR room on standalone Quest, plus a ground-up WebGL rebuild for install-free access.',
+    tags: 'Unity · WebGL · Network LOD · Quest',
+  },
+  {
+    role: 'open source',
+    name: 'FigNet / Entangle / FnVoice',
+    blurb: 'A transport-agnostic .NET networking framework (6,000+ NuGet downloads), a room layer that scales past 300 players, and a self-contained Opus + WebRTC voice engine.',
+    tags: '.NET 8 · ENet · WebSocket · Opus · C/C++',
+  },
+];
+
+const pastwork = [
+  { name: 'PokerVR (Quest / Rift)', yr: '2018–19' },
+  { name: 'Epic Battles of History', yr: '2014–18' },
+  { name: 'Coda Quest', yr: '2014–18' },
+  { name: 'Cthulhu Realms', yr: '2014–18' },
+  { name: 'Widget (UI) Manager — Unity Asset Store', yr: '2016' },
+  { name: 'RGB Box Runner', yr: '2015' },
+];
+---
+<Base title="Projects — Muhammad Ahmed">
+  <main>
+    <div class="wrap">
+      <p class="eyebrow">// projects</p>
+      <h1 class="hero">Selected work.</h1>
+
+      <div class="cards">
+        {flagships.map((p) => (
+          <div class="card">
+            <p class="role">{p.role}</p>
+            <h3>{p.name}</h3>
+            <p>{p.blurb}</p>
+            <p class="tags">{p.tags}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="note" style="margin-top:14px;">Deep-dive write-ups with demos and diagrams are on the way.</p>
+
+      <h2>past work</h2>
+      <ul class="pastwork">
+        {pastwork.map((w) => (
+          <li><span>{w.name}</span><span class="yr">{w.yr}</span></li>
+        ))}
+      </ul>
+    </div>
+  </main>
+</Base>

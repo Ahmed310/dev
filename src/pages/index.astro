@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="Muhammad Ahmed — game developer & real-time systems">
+  <main>
+    <div class="wrap">
+      <p class="eyebrow">// muhammad ahmed</p>
+      <h1 class="hero">I build games and the real-time multiplayer systems behind them: the netcode, voice, and infrastructure for shared VR.</h1>
+      <p class="lead">Game developer, 11+ years. I keep hundreds of people in sync, in real time, and build the netcode, voice, and tools that make it possible.</p>
+      <div class="cta">
+        <a href={`${b}/projects`}>selected work &rarr;</a>
+        <a href={`${b}/blog`}>writing &rarr;</a>
+        <a href={

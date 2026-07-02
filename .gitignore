@@ -1,0 +1,16 @@
+# build output
+dist/
+.astro/
+# dependencies
+node_modules/
+# logs / env
+npm-debug.log*
+.env
+.env.production
+# macOS
+.DS_Store
+
+# internal working files (kept local, not published)
+content/
+preview/
+CONTENT_BRIEF.md
