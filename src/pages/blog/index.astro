@@ -1,5 +1,11 @@
 ---
 import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
+const posts = (await getCollection('blog'))
+  .filter((p) => !p.data.draft)
+  .sort((a, z) => z.data.pubDate.getTime() - a.data.pubDate.getTime());
+const fmt = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 ---
 <Base title="Blog — Muhammad Ahmed">
   <main>
@@ -8,8 +14,22 @@ import Base from '../../layouts/Base.astro';
       <h1 class="hero">Writing.</h1>
       <p class="lead">Deep dives on real-time networking and systems: how I built FigNet, Entangle, and FnVoice, and the C# and low-level tricks underneath.</p>
 
-      <h2>coming soon</h2>
-      <p class="note">A technical series is in the works. First up: why I built my own netcode instead of licensing Photon, then a walk through the Entangle architecture and the FnVoice audio pipeline.</p>
+      <div class="postlist">
+        {posts.map((p) => (
+          <div class="postrow">
+            <a class="pt" href={`${b}/blog/${p.id}`}>{p.data.title}</a>
+            <p class="pd">{fmt(p.data.pubDate)}</p>
+            <p>{p.data.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <h2>coming up</h2>
+      <ul class="upcoming">
+        <li>The Entangle architecture: rooms, entities, and the tick loop</li>
+        <li>Area-of-interest: a spatial grid that scales to hundreds of players</li>
+        <li>FnVoice: building a voice engine to replace a commercial dependency</li>
+      </ul>
     </div>
   </main>
 </Base>

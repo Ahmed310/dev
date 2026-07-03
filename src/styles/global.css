@@ -122,3 +122,30 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify
 .game-desc{color:var(--muted); font-size:14.5px; margin:5px 0 0; line-height:1.6;}
 .glinks{margin-top:8px; font-family:var(--mono); font-size:12.5px; display:flex; flex-wrap:wrap; gap:16px;}
 .glinks a{color:var(--accent);}
+
+/* blog index */
+.postlist{display:flex; flex-direction:column; margin-top:8px;}
+.postrow{padding:16px 0; border-top:1px solid var(--border);}
+.postrow a.pt{color:#eef1f6; font-size:17px; font-weight:600;}
+.postrow a.pt:hover{color:var(--accent); text-decoration:none;}
+.postrow .pd{font-family:var(--mono); font-size:12px; color:var(--faint); margin:2px 0 0;}
+.postrow p{color:var(--muted); font-size:14.5px; margin:5px 0 0; line-height:1.55;}
+.upcoming{color:var(--muted); font-size:14.5px; padding-left:20px;}
+.upcoming li{margin:0 0 5px;}
+
+/* blog post */
+.post-title{font-size:28px; font-weight:600; line-height:1.3; letter-spacing:-.3px; color:#eef1f6; margin:0 0 10px; max-width:660px;}
+.post-meta{font-family:var(--mono); font-size:12.5px; color:var(--faint); margin:0 0 32px;}
+.post{max-width:680px;}
+.post p{color:#cdd3dd; margin:0 0 18px; line-height:1.78;}
+.post h2{font-size:20px; font-weight:600; color:#eef1f6; letter-spacing:-.2px; margin:36px 0 12px;}
+.post h3{font-size:17px; font-weight:600; color:#eef1f6; margin:28px 0 8px;}
+.post ul,.post ol{color:#cdd3dd; padding-left:22px; margin:0 0 18px;}
+.post li{margin:0 0 7px; line-height:1.7;}
+.post a{color:var(--accent);}
+.post strong{color:var(--text); font-weight:600;}
+.post blockquote{border-left:2px solid var(--accent-dim); margin:0 0 18px; padding:2px 0 2px 16px; color:var(--muted);}
+.post code{font-family:var(--mono); font-size:13.5px; background:#161a20; border:1px solid var(--border); border-radius:4px; padding:1px 5px;}
+.post pre{border:1px solid var(--border); border-radius:10px; padding:16px 18px; overflow-x:auto; margin:0 0 20px; font-size:13.5px; line-height:1.6;}
+.post pre code{background:none; border:0; padding:0;}
+.backlink{margin-top:44px; font-family:var(--mono); font-size:13px;}
