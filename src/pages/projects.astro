@@ -15,14 +15,12 @@ const projects = [
       'Automated build and deployment on AWS EC2 (Linux).',
     ],
     videos: [
-      { src: '/media/immersed/Immersed_100.mp4', cap: '100+ users in a single shared VR room, synced in real time.' },
-      { src: '/media/immersed/Immered_100_with_voice.mp4', cap: 'The same room with spatial voice chat running.' },
+      { src: '/media/immersed/Immersed_100.mp4', cap: 'A shared VR room with networked avatars, synced in real time on Entangle.', full: true },
       { src: '/media/immersed/meta_avatar_fullbody_1.mp4', cap: 'Meta full-body avatar networked across peers.' },
       { src: '/media/immersed/meta_avatar_fullbody_2.mp4', cap: 'Full-body avatar tracking, synced in real time.' },
       { src: '/media/immersed/Genies_avatar_1.mp4', cap: 'Genies avatar integration in a shared room.' },
       { src: '/media/immersed/Genies_Avatar_2.mp4', cap: 'Genies avatar networked across users.' },
     ],
-    media: 'demo: Meta full-body avatar networking — video coming soon',
     links: [['immersed.com', 'https://immersed.com/']],
   },
   {
@@ -37,7 +35,7 @@ const projects = [
       'Designed a networked physics system (client-computed, server-distributed) as a microservice.',
     ],
     shots: [
-      { src: '/media/arthur/NetworkPhysics_Arthur.gif', cap: 'Networked physics: interactable objects, computed client-side and distributed over the network, stay in sync for everyone in the room.' },
+      { src: '/media/arthur/NetworkPhysics_Arthur.gif', cap: 'Networked physics: interactable objects, computed client-side and distributed over the network, stay in sync across the room.' },
       { src: '/media/arthur/NetworkPhysics2_Arthur.gif', cap: 'Consistent physics state across peers, driven by the physics microservice.' },
     ],
     links: [['arthur.digital', 'https://arthur.digital/']],
@@ -51,6 +49,9 @@ const projects = [
       'FigNet — a transport-agnostic .NET networking framework (ENet, LiteNetLib, WebSocket).',
       'Entangle — the room layer: area-of-interest, subscription and delta replication, three authority models, and self-healing state sync that scales past 300 players.',
       'FnVoice — a self-contained voice engine (Opus + native WebRTC DSP) that replaces a commercial dependency, cross-compiled for 7 platforms.',
+    ],
+    videos: [
+      { src: '/media/fignet/Immered_100_with_voice.mp4', cap: 'Real-time spatial voice chat in a shared VR room.', full: true },
     ],
     media: 'diagram: Entangle architecture + AOI spatial grid — coming soon',
     links: [
@@ -90,16 +91,27 @@ const games = [
               <p class="l">what i built</p>
               <ul>{p.built.map((x) => (<li>{x}</li>))}</ul>
             </div>
-            {p.videos ? (
-              <div class="vids">
-                {p.videos.map((v) => (
-                  <figure class="vid">
+            {p.videos && (
+              <div class="media-stack">
+                {p.videos.filter((v) => v.full).map((v) => (
+                  <figure class="vid vfull">
                     <video src={`${b}${v.src}`} controls muted playsinline loop preload="metadata"></video>
                     <figcaption>{v.cap}</figcaption>
                   </figure>
                 ))}
+                {p.videos.some((v) => !v.full) && (
+                  <div class="vids">
+                    {p.videos.filter((v) => !v.full).map((v) => (
+                      <figure class="vid">
+                        <video src={`${b}${v.src}`} controls muted playsinline loop preload="metadata"></video>
+                        <figcaption>{v.cap}</figcaption>
+                      </figure>
+                    ))}
+                  </div>
+                )}
               </div>
-            ) : p.shots ? (
+            )}
+            {p.shots && (
               <div class="shots">
                 {p.shots.map((s) => (
                   <figure class="shot">
@@ -108,9 +120,8 @@ const games = [
                   </figure>
                 ))}
               </div>
-            ) : (
-              <div class="proj-media">{p.media}</div>
             )}
+            {p.media && (<div class="proj-media">{p.media}</div>)}
             <div class="links">{p.links.map((l) => (<a href={l[1]}>{l[0]}</a>))}</div>
           </div>
         ))}
