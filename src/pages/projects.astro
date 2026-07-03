@@ -50,13 +50,56 @@ const projects = [
   },
 ];
 
-const pastwork = [
-  { name: 'PokerVR (Quest / Rift)', yr: '2018–19' },
-  { name: 'Epic Battles of History', yr: '2014–18' },
-  { name: 'Coda Quest', yr: '2014–18' },
-  { name: 'Cthulhu Realms', yr: '2014–18' },
-  { name: 'Widget (UI) Manager — Unity Asset Store', yr: '2016' },
-  { name: 'RGB Box Runner', yr: '2015' },
+const games = [
+  {
+    name: 'PokerVR',
+    yr: '2018–19',
+    desc: 'Social VR poker, ported to Oculus Quest as a ground-up rebuild and shipped on the store. I built the avatar-UI draw-call optimization (~40 to 1), automated the character pipeline, and set up studio-wide builds.',
+    links: [
+      ['quest', 'https://www.oculus.com/experiences/quest/2257223740990488/'],
+      ['gameplay', 'https://www.youtube.com/watch?v=tQGCVHw2rTk'],
+      ['engineering notes', 'https://medium.com/@m.ahmed310.ma/thumbnail-creation-from-prefab-in-unity-pokervr-automated-system-for-draw-call-optimization-2f488d1d7131'],
+    ],
+  },
+  {
+    name: 'Epic Battles of History',
+    yr: '2014–18',
+    desc: 'Historical strategy title. Led client-side architecture and core gameplay, built editor tooling, and mentored client engineers.',
+    links: [
+      ['steam', 'https://store.steampowered.com/app/718750/Epic_Battles_of_History/'],
+      ['play store', 'https://play.google.com/store/apps/details?id=com.frag.eboh'],
+    ],
+  },
+  {
+    name: 'Coda Quest',
+    yr: '2014–18',
+    desc: 'Online educational RPG. Built crafting, in-game trading, NPC behavior, and client/server zone selection.',
+    links: [['video', 'https://vimeo.com/202066411']],
+  },
+  {
+    name: 'Cthulhu Realms',
+    yr: '2014–18',
+    desc: 'Digital card game. Built the game UI in Unity UGUI.',
+    links: [
+      ['play store', 'https://play.google.com/store/apps/details?id=com.whitewizardgames.cthulhurealms'],
+      ['video', 'https://www.youtube.com/watch?v=5GBTm6v-sNQ'],
+    ],
+  },
+  {
+    name: 'Widget (UI) Manager',
+    yr: '2016',
+    desc: 'Code-free UI animation and management tool, adopted studio-wide and published on the Unity Asset Store.',
+    links: [
+      ['asset store', 'https://assetstore.unity.com/packages/tools/gui/widget-ui-manager-57802'],
+      ['video', 'https://www.youtube.com/watch?v=mzMo7oM5Qcw'],
+    ],
+  },
+  {
+    name: 'RGB Box Runner',
+    yr: '2015',
+    desc: 'Fast-paced endless runner in C#/XNA, featured by Microsoft on the Windows Phone Store in 4 countries.',
+    links: [['video', 'https://www.youtube.com/watch?v=dCu4jFfOUMU']],
+  },
 ];
 ---
 <Base title="Projects — Muhammad Ahmed">
@@ -72,26 +115,28 @@ const pastwork = [
             <h3>{p.title}</h3>
             <p class="pintro">{p.intro}</p>
             <div class="metrics">
-              {p.metrics.map((m) => (
-                <div class="metric"><b>{m[0]}</b><span>{m[1]}</span></div>
-              ))}
+              {p.metrics.map((m) => (<div class="metric"><b>{m[0]}</b><span>{m[1]}</span></div>))}
             </div>
             <div class="blk">
               <p class="l">what i built</p>
               <ul>{p.built.map((x) => (<li>{x}</li>))}</ul>
             </div>
             <div class="proj-media">{p.media}</div>
-            <div class="links">
-              {p.links.map((l) => (<a href={l[1]}>{l[0]}</a>))}
-            </div>
+            <div class="links">{p.links.map((l) => (<a href={l[1]}>{l[0]}</a>))}</div>
           </div>
         ))}
       </div>
 
-      <h2>past work</h2>
-      <ul class="pastwork">
-        {pastwork.map((w) => (<li><span>{w.name}</span><span class="yr">{w.yr}</span></li>))}
-      </ul>
+      <h2>games &amp; tools</h2>
+      <div class="games">
+        {games.map((g) => (
+          <div class="game">
+            <div class="game-head"><a href={g.links[0][1]}>{g.name}</a><span class="yr">{g.yr}</span></div>
+            <p class="game-desc">{g.desc}</p>
+            <div class="glinks">{g.links.map((l) => (<a href={l[1]}>{l[0]}</a>))}</div>
+          </div>
+        ))}
+      </div>
     </div>
   </main>
 </Base>
