@@ -14,6 +14,14 @@ const projects = [
       'Owned the avatar pipeline (Genies, Meta, Ready Player Me) and moved room and user state from polling REST to WebSockets.',
       'Automated build and deployment on AWS EC2 (Linux).',
     ],
+    videos: [
+      { src: '/media/immersed/Immersed_100.mp4', cap: '100+ users in a single shared VR room, synced in real time.' },
+      { src: '/media/immersed/Immered_100_with_voice.mp4', cap: 'The same room with spatial voice chat running.' },
+      { src: '/media/immersed/meta_avatar_fullbody_1.mp4', cap: 'Meta full-body avatar networked across peers.' },
+      { src: '/media/immersed/meta_avatar_fullbody_2.mp4', cap: 'Full-body avatar tracking, synced in real time.' },
+      { src: '/media/immersed/Genies_avatar_1.mp4', cap: 'Genies avatar integration in a shared room.' },
+      { src: '/media/immersed/Genies_Avatar_2.mp4', cap: 'Genies avatar networked across users.' },
+    ],
     media: 'demo: Meta full-body avatar networking — video coming soon',
     links: [['immersed.com', 'https://immersed.com/']],
   },
@@ -82,7 +90,16 @@ const games = [
               <p class="l">what i built</p>
               <ul>{p.built.map((x) => (<li>{x}</li>))}</ul>
             </div>
-            {p.shots ? (
+            {p.videos ? (
+              <div class="vids">
+                {p.videos.map((v) => (
+                  <figure class="vid">
+                    <video src={`${b}${v.src}`} controls muted playsinline loop preload="metadata"></video>
+                    <figcaption>{v.cap}</figcaption>
+                  </figure>
+                ))}
+              </div>
+            ) : p.shots ? (
               <div class="shots">
                 {p.shots.map((s) => (
                   <figure class="shot">
