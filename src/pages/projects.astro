@@ -1,24 +1,52 @@
 ---
 import Base from '../layouts/Base.astro';
 
-const flagships = [
+const projects = [
   {
-    role: 'immersed · senior software developer',
-    name: 'Entangle at Immersed',
-    blurb: 'Replaced third-party networking with my own stack across a VR metaverse platform, holding 100+ users in one room and cutting infrastructure cost ~65%.',
-    tags: 'C# · .NET · AOI · VoIP · AWS',
+    eyebrow: 'immersed · vr metaverse collaboration',
+    title: 'Entangle: my networking stack, in production',
+    intro: 'Immersed ran on Photon Fusion, which capped scale and drove a steep monthly bill. I replaced it with my own real-time stack and owned the whole collaboration experience.',
+    metrics: [['100+', 'users / room'], ['~65%', 'cloud cost cut']],
+    built: [
+      'Deployed my own networking framework (Entangle) in place of Photon Fusion, with area-of-interest and automatic state sync.',
+      'Built a cross-platform VoIP stack with a C++ core so mobile users could join VR rooms.',
+      'Owned the avatar pipeline (Genies, Meta, Ready Player Me) and moved room and user state from polling REST to WebSockets.',
+      'Automated build and deployment on AWS EC2 (Linux).',
+    ],
+    media: 'demo: Meta full-body avatar networking — video coming soon',
+    links: [['immersed.com', 'https://immersed.com/']],
   },
   {
-    role: 'arthur · senior software developer',
-    name: 'Scaling VR meetings',
-    blurb: 'Network LOD and networking optimizations to fit 100+ people in a single VR room on standalone Quest, plus a ground-up WebGL rebuild for install-free access.',
-    tags: 'Unity · WebGL · Network LOD · Quest',
+    eyebrow: 'arthur · vr virtual office',
+    title: 'Scaling VR meetings to 100+ on a standalone headset',
+    intro: 'Getting 100+ people into one VR room on a Quest means fighting two budgets at once: bandwidth and frame time. Onboarding also relied on a costly cloud-streaming setup.',
+    metrics: [['100+', 'users / room'], ['0', 'install friction']],
+    built: [
+      'Built network LOD and networking optimizations to keep bandwidth bounded as the room filled.',
+      'Engineered a Smart Loading System that hands CPU and GPU budget to what matters (culling IK for out-of-view users, adaptive sharpening).',
+      'Led a ground-up WebGL re-architecture that replaced costly AWS AppStream streaming, so users could join in a browser with no install.',
+      'Designed a networked physics system (client-computed, server-distributed) as a microservice.',
+    ],
+    media: 'demo: networked physics sync — GIF coming soon',
+    links: [['arthur.digital', 'https://arthur.digital/']],
   },
   {
-    role: 'open source',
-    name: 'FigNet / Entangle / FnVoice',
-    blurb: 'A transport-agnostic .NET networking framework (6,000+ NuGet downloads), a room layer that scales past 300 players, and a self-contained Opus + WebRTC voice engine.',
-    tags: '.NET 8 · ENet · WebSocket · Opus · C/C++',
+    eyebrow: 'open source · .net 8 + unity',
+    title: 'FigNet, Entangle and FnVoice',
+    intro: 'The stack behind the work above, built in the open: a networking framework, a room and gameplay layer on top, and a voice engine — the things most teams license.',
+    metrics: [['6,000+', 'NuGet downloads'], ['300+', 'players / room'], ['7', 'voice platforms']],
+    built: [
+      'FigNet — a transport-agnostic .NET networking framework (ENet, LiteNetLib, WebSocket).',
+      'Entangle — the room layer: area-of-interest, subscription and delta replication, three authority models, and self-healing state sync that scales past 300 players.',
+      'FnVoice — a self-contained voice engine (Opus + native WebRTC DSP) that replaces a commercial dependency, cross-compiled for 7 platforms.',
+    ],
+    media: 'diagram: Entangle architecture + AOI spatial grid — coming soon',
+    links: [
+      ['docs', 'https://m-ahmed310.gitbook.io/fignet/'],
+      ['nuget', 'https://www.nuget.org/packages/fignet.core.template/'],
+      ['among-us demo', 'https://www.youtube.com/watch?v=BawdFY6EwVc'],
+      ['asset store', 'https://assetstore.unity.com/packages/tools/network/fignet-207935'],
+    ],
   },
 ];
 
@@ -38,23 +66,31 @@ const pastwork = [
       <h1 class="hero">Selected work.</h1>
 
       <div class="cards">
-        {flagships.map((p) => (
+        {projects.map((p) => (
           <div class="card">
-            <p class="role">{p.role}</p>
-            <h3>{p.name}</h3>
-            <p>{p.blurb}</p>
-            <p class="tags">{p.tags}</p>
+            <p class="role">{p.eyebrow}</p>
+            <h3>{p.title}</h3>
+            <p class="pintro">{p.intro}</p>
+            <div class="metrics">
+              {p.metrics.map((m) => (
+                <div class="metric"><b>{m[0]}</b><span>{m[1]}</span></div>
+              ))}
+            </div>
+            <div class="blk">
+              <p class="l">what i built</p>
+              <ul>{p.built.map((x) => (<li>{x}</li>))}</ul>
+            </div>
+            <div class="proj-media">{p.media}</div>
+            <div class="links">
+              {p.links.map((l) => (<a href={l[1]}>{l[0]}</a>))}
+            </div>
           </div>
         ))}
       </div>
 
-      <p class="note" style="margin-top:14px;">Deep-dive write-ups with demos and diagrams are on the way.</p>
-
       <h2>past work</h2>
       <ul class="pastwork">
-        {pastwork.map((w) => (
-          <li><span>{w.name}</span><span class="yr">{w.yr}</span></li>
-        ))}
+        {pastwork.map((w) => (<li><span>{w.name}</span><span class="yr">{w.yr}</span></li>))}
       </ul>
     </div>
   </main>
