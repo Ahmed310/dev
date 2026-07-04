@@ -25,8 +25,8 @@ const projects = [
   },
   {
     eyebrow: 'arthur · vr virtual office',
-    title: 'Scaling VR meetings to 100+ on a standalone headset',
-    intro: 'Getting 100+ people into one VR room on a Quest means fighting two budgets at once: bandwidth and frame time. Onboarding also relied on a costly cloud-streaming setup.',
+    title: 'Scaling VR meetings to 100+ on a Quest 2',
+    intro: 'Getting 100+ people into one VR room on a Quest 2 means fighting two budgets at once: bandwidth and frame time. Onboarding also relied on a costly cloud-streaming setup.',
     metrics: [['100+', 'users / room'], ['0', 'install friction']],
     built: [
       'Built network LOD and networking optimizations to keep bandwidth bounded as the room filled.',
@@ -50,8 +50,11 @@ const projects = [
       'Entangle — the room layer: area-of-interest, subscription and delta replication, three authority models, and self-healing state sync that scales past 300 players.',
       'FnVoice — a self-contained voice engine (Opus + native WebRTC DSP) that replaces a commercial dependency, cross-compiled for 7 platforms.',
     ],
+    videoCols: 3,
     videos: [
-      { src: '/media/fignet/Immered_100_with_voice.mp4', cap: 'Real-time spatial voice chat in a shared VR room.', full: true },
+      { src: '/media/fignet/Immered_100_with_voice.mp4', cap: 'Real-time spatial voice chat in a shared VR room.' },
+      { src: '/media/fignet/Immersed_100_with_voice_2.MP4', cap: 'Clear voice across a busy room.' },
+      { src: '/media/fignet/Immersed_100_with_voice_3.mp4', cap: 'Low-latency voice at room scale.' },
     ],
     media: 'diagram: Entangle architecture + AOI spatial grid — coming soon',
     links: [
@@ -100,7 +103,7 @@ const games = [
                   </figure>
                 ))}
                 {p.videos.some((v) => !v.full) && (
-                  <div class="vids">
+                  <div class={p.videoCols === 3 ? "vids cols3" : "vids"}>
                     {p.videos.filter((v) => !v.full).map((v) => (
                       <figure class="vid">
                         <video src={`${b}${v.src}`} controls muted playsinline loop preload="metadata"></video>
