@@ -52,6 +52,7 @@ const projects = [
     ],
     videoCols: 3,
     videos: [
+      { src: '/media/fignet/among_us_mode_300.mp4', cap: 'A 100-300 player Among Us-style mode, powered by FigNet and Entangle.', full: true, link: 'https://www.youtube.com/watch?v=BawdFY6EwVc' },
       { src: '/media/fignet/Immered_100_with_voice.mp4', cap: 'Real-time spatial voice chat in a shared VR room.' },
       { src: '/media/fignet/Immersed_100_with_voice_2.MP4', cap: 'Clear voice across a busy room.' },
       { src: '/media/fignet/Immersed_100_with_voice_3.mp4', cap: 'Low-latency voice at room scale.' },
@@ -99,7 +100,7 @@ const games = [
                 {p.videos.filter((v) => v.full).map((v) => (
                   <figure class="vid vfull">
                     <video src={`${b}${v.src}`} controls muted playsinline loop preload="metadata"></video>
-                    <figcaption>{v.cap}</figcaption>
+                    <figcaption>{v.cap}{v.link && (<span class="cap-link"> &middot; <a href={v.link}>watch full &rarr;</a></span>)}</figcaption>
                   </figure>
                 ))}
                 {p.videos.some((v) => !v.full) && (
@@ -107,7 +108,7 @@ const games = [
                     {p.videos.filter((v) => !v.full).map((v) => (
                       <figure class="vid">
                         <video src={`${b}${v.src}`} controls muted playsinline loop preload="metadata"></video>
-                        <figcaption>{v.cap}</figcaption>
+                        <figcaption>{v.cap}{v.link && (<span class="cap-link"> &middot; <a href={v.link}>watch full &rarr;</a></span>)}</figcaption>
                       </figure>
                     ))}
                   </div>

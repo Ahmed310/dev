@@ -172,3 +172,7 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify
 /* three voice clips in one row */
 .vids.cols3{grid-template-columns:1fr 1fr 1fr;}
 @media (max-width:640px){ .vids.cols3{grid-template-columns:1fr;} }
+
+/* caption inline link */
+.cap-link{color:var(--faint);}
+.cap-link a{color:var(--accent);}
