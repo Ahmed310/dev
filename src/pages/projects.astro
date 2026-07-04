@@ -99,7 +99,7 @@ const games = [
               <div class="media-stack">
                 {p.videos.filter((v) => v.full).map((v) => (
                   <figure class="vid vfull">
-                    <video src={`${b}${v.src}`} controls muted playsinline loop preload="metadata"></video>
+                    <video src={`${b}${v.src}#t=0.1`} controls muted playsinline loop preload="metadata"></video>
                     <figcaption>{v.cap}{v.link && (<span class="cap-link"> &middot; <a href={v.link}>watch full &rarr;</a></span>)}</figcaption>
                   </figure>
                 ))}
@@ -107,7 +107,7 @@ const games = [
                   <div class={p.videoCols === 3 ? "vids cols3" : "vids"}>
                     {p.videos.filter((v) => !v.full).map((v) => (
                       <figure class="vid">
-                        <video src={`${b}${v.src}`} controls muted playsinline loop preload="metadata"></video>
+                        <video src={`${b}${v.src}#t=0.1`} controls muted playsinline loop preload="metadata"></video>
                         <figcaption>{v.cap}{v.link && (<span class="cap-link"> &middot; <a href={v.link}>watch full &rarr;</a></span>)}</figcaption>
                       </figure>
                     ))}
