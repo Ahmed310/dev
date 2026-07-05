@@ -57,6 +57,8 @@ const projects = [
     eyebrow: 'open source · .net 8 + unity',
     detailTitle: 'FigNet',
     intro: 'My open-source <strong>networking framework</strong> in .NET. On top of it, <strong>Entangle</strong> adds the room and gameplay layer, and <strong>FnVoice</strong> handles real-time voice. Together they cover the parts most teams license.',
+    youtube: 'mwcTNEdlgCU',
+    youtubeCap: 'A mobile vs PC cross-play demo running on Entangle, with the server deployed on AWS.',
     metrics: [['6,000+', 'NuGet downloads'], ['300+', 'players / room'], ['7', 'voice platforms']],
     built: [
       '<strong>FigNet</strong>: a transport-agnostic .NET networking framework (ENet, LiteNetLib, WebSocket).',
@@ -99,6 +101,7 @@ const games = [
   { id: 'cthulhu', name: 'Cthulhu Realms', yr: '2014–18', icon: 'CR', youtube: '5GBTm6v-sNQ', desc: 'Digital card game. As a <strong>junior developer</strong> I built the <strong>entire game UI</strong>, back when the new <strong>Unity UI (uGUI)</strong> had only just launched, so a lot of it meant working the system out from first principles.', links: [['play store', 'https://play.google.com/store/apps/details?id=com.whitewizardgames.cthulhurealms']] },
   { id: 'widget', name: 'Widget (UI) Manager', yr: '2016', icon: 'WM', video: '/media/games/widget_manager.mp4', desc: 'Code-free UI animation and management tool, adopted studio-wide and published on the Unity Asset Store.', links: [['asset store', 'https://assetstore.unity.com/packages/tools/gui/widget-ui-manager-57802'], ['video', 'https://www.youtube.com/watch?v=mzMo7oM5Qcw']] },
   { id: 'rgb', name: 'RGB Box Runner', yr: '2015', icon: 'RB', video: '/media/games/rgb_box_runner.mp4', desc: 'A fast-paced endless runner in C#/XNA, built <strong>from scratch</strong> during university summer breaks and featured by Microsoft on the Windows Phone Store in 4 countries. I designed the whole game as <strong>reusable modules</strong>. <strong>Level generation</strong> reads a text file and stitches segments together so the world feels endless, and the same <strong>tile map</strong> both draws the level and drives <strong>collision detection</strong>. UI, buttons and input were built as reusable components, and characters animate through a <strong>sprite-based animation</strong> component. For performance on phones I drew only the <strong>tiles visible on screen</strong>, and each collision check tests the player against just the <strong>9 surrounding tiles</strong> instead of the whole map.', links: [['video', 'https://www.youtube.com/watch?v=dCu4jFfOUMU']] },
+  { id: 'brawl', name: 'Brawl Stars Prototype', yr: '2021', icon: 'BS', video: '/media/games/map_editor.mp4', videoCap: 'The custom map editor I built for designing and iterating on arenas.', demo: { yt: '0tlP0HOWCVc', cap: 'Gameplay demo: authoritative server, client-side prediction and lag compensation.' }, desc: 'A hobby prototype recreating Brawl Stars-style top-down multiplayer in Unity. The server is <strong>fully authoritative</strong>, written in C# with <strong>ENet-CSharp</strong> for networking. On top of it I implemented <strong>client-side prediction</strong>, <strong>lag compensation</strong>, and <strong>Network LOD</strong> (each player keeps a proximity list of nearby entities), plus <strong>custom 2D physics</strong> on the server for entity and map collision. I also built a dedicated <strong>map editor</strong> for designing arenas.', links: [['gameplay demo', 'https://www.youtube.com/watch?v=0tlP0HOWCVc']] },
 ];
 ---
 <Base title="Projects · Muhammad Ahmed" decor="projects">
@@ -149,7 +152,7 @@ const games = [
         <p class="eyebrow">{p.eyebrow}</p>
         <h3 class="modal-title">{p.detailTitle}</h3>
         <p class="pintro" set:html={p.intro}></p>
-        {p.youtube && (<figure class="vid vfull"><div class="vimeo-wrap"><iframe src={`https://www.youtube.com/embed/${p.youtube}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></figure>)}
+        {p.youtube && (<figure class="vid vfull"><div class="vimeo-wrap"><iframe src={`https://www.youtube.com/embed/${p.youtube}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>{p.youtubeCap && (<figcaption>{p.youtubeCap}</figcaption>)}</figure>)}
         <div class="metrics">{p.metrics.map((m) => (<div class="metric"><b>{m[0]}</b><span>{m[1]}</span></div>))}</div>
         <div class="blk"><p class="l">what i built</p><ul>{p.built.map((x) => (<li set:html={x}></li>))}</ul></div>
         {p.videos && (
@@ -183,11 +186,12 @@ const games = [
         <p class="eyebrow">games &amp; tools</p>
         <h3 class="modal-title">{g.name} <span class="modal-yr">{g.yr}</span></h3>
         <p class="pintro" set:html={g.desc}></p>
+        {g.demo && (<figure class="vid vfull"><div class="vimeo-wrap"><iframe src={`https://www.youtube.com/embed/${g.demo.yt}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><figcaption>{g.demo.cap}</figcaption></figure>)}
         {g.youtube
           ? (<figure class="vid vfull"><div class="vimeo-wrap"><iframe src={`https://www.youtube.com/embed/${g.youtube}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></figure>)
           : g.vimeo
           ? (<figure class="vid vfull"><div class="vimeo-wrap"><iframe src={`https://player.vimeo.com/video/${g.vimeo}?title=0&byline=0&portrait=0`} frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></figure>)
-          : g.video && (<figure class="vid vfull"><video src={`${b}${g.video}#t=0.1`} controls muted playsinline loop preload="metadata"></video></figure>)}
+          : g.video && (<figure class="vid vfull"><video src={`${b}${g.video}#t=0.1`} controls muted playsinline loop preload="metadata"></video>{g.videoCap && (<figcaption>{g.videoCap}</figcaption>)}</figure>)}
         {g.body && g.body.map((sec) => (<div class={sec.yt ? "secrow" : "pblock"}><div class="seccol"><h4>{sec.h}</h4><p>{sec.p}</p>{sec.post && (<p class="secmore"><a href={sec.post[1]}>{sec.post[0]} &rarr;</a></p>)}</div>{sec.yt && (<figure class="vid secvid2"><div class="vimeo-wrap"><iframe src={`https://www.youtube.com/embed/${sec.yt}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><figcaption>{sec.cap}</figcaption></figure>)}</div>))}
         {g.links && g.links.length > 0 && (<div class="links">{g.links.map((l) => (<a href={l[1]}>{l[0]}</a>))}</div>)}
       </div>
