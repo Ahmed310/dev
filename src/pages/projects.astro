@@ -57,8 +57,6 @@ const projects = [
     eyebrow: 'open source · .net 8 + unity',
     detailTitle: 'FigNet',
     intro: 'My open-source <strong>networking framework</strong> in .NET. On top of it, <strong>Entangle</strong> adds the room and gameplay layer, and <strong>FnVoice</strong> handles real-time voice. Together they cover the parts most teams license.',
-    youtube: 'mwcTNEdlgCU',
-    youtubeCap: 'A mobile vs PC cross-play demo running on Entangle, with the server deployed on AWS.',
     metrics: [['6,000+', 'NuGet downloads'], ['300+', 'players / room'], ['7', 'voice platforms']],
     built: [
       '<strong>FigNet</strong>: a transport-agnostic .NET networking framework (ENet, LiteNetLib, WebSocket).',
@@ -72,7 +70,10 @@ const projects = [
       { src: '/media/fignet/Immersed_100_with_voice_2.MP4', cap: 'Clear voice across a busy room.' },
       { src: '/media/fignet/Immersed_100_with_voice_3.mp4', cap: 'Low-latency voice at room scale.' },
     ],
-    media: 'diagram: Entangle architecture + AOI spatial grid (coming soon)',
+    demos: [
+      { yt: 'mwcTNEdlgCU', cap: 'Entangle Unity demo: mobile vs PC cross-play, server deployed on AWS.' },
+      { src: '/media/games/agar_io_fignet.mp4', cap: 'An Agar.io-style demo built on FigNet.', repo: 'https://github.com/Ahmed310/Agar.FigNet' },
+    ],
     links: [
       ['docs', 'https://m-ahmed310.gitbook.io/fignet/'],
       ['nuget', 'https://www.nuget.org/packages/fignet.core.template/'],
@@ -178,6 +179,7 @@ const games = [
           </div>
         )}
         {p.media && (<div class="proj-media">{p.media}</div>)}
+        {p.demos && (<div class="embed-2">{p.demos.map((d) => (<figure class="vid">{d.yt && (<div class="vimeo-wrap"><iframe src={`https://www.youtube.com/embed/${d.yt}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>)}{d.src && (<video src={`${b}${d.src}#t=0.1`} controls muted playsinline loop preload="metadata"></video>)}<figcaption>{d.cap}{d.repo && (<span class="cap-link"> &middot; <a href={d.repo}>repo &rarr;</a></span>)}</figcaption></figure>))}</div>)}
         <div class="links">{p.links.map((l) => (<a href={l[1]}>{l[0]}</a>))}</div>
       </div>
     ))}
