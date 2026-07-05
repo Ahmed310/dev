@@ -271,7 +271,9 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify
 .modal-title{font-size:22px; font-weight:600; color:#eef1f6; margin:2px 0 14px; letter-spacing:-.2px;}
 .modal-yr{font-family:var(--mono); font-size:13px; color:var(--faint); font-weight:400;}
 #modal-body .pintro{margin-bottom:6px;}
-#modal-body .links{margin-top:18px;}
+#modal-body .links{margin-top:18px; font-family:var(--mono); font-size:13px; display:flex; flex-wrap:wrap; gap:18px;}
+#modal-body .links a{color:var(--accent); text-decoration:none;}
+#modal-body .links a:hover{text-decoration:underline;}
 
 @media (max-width:560px){
   .modal{padding:16px 10px;}
