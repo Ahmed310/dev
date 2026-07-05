@@ -224,7 +224,7 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify
 .tpl{display:none;}
 
 /* ===== side decorations ===== */
-.side-art{position:fixed; top:50%; transform:translateY(-50%); z-index:0; pointer-events:none; opacity:.5;}
+.side-art{position:fixed; top:50%; transform:translateY(-50%); z-index:0; pointer-events:none; opacity:.7;}
 .side-art.left{left:3vw;}
 .side-art.right{right:3vw;}
 .side-art svg{display:block;}
