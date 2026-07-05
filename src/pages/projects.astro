@@ -35,6 +35,7 @@ const projects = [
     eyebrow: 'arthur · vr virtual office',
     detailTitle: 'Scaling VR meetings to 100+ on a Quest 2',
     intro: 'Getting 100+ people into one VR room on a Quest 2 means fighting two budgets at once: bandwidth and frame time. Onboarding also relied on a costly cloud-streaming setup.',
+    youtube: 'ONQtTpYkQgE',
     metrics: [['100+', 'users / room'], ['0', 'install friction']],
     built: [
       'Built network LOD and networking optimizations to keep bandwidth bounded as the room filled.',
@@ -148,6 +149,7 @@ const games = [
         <p class="eyebrow">{p.eyebrow}</p>
         <h3 class="modal-title">{p.detailTitle}</h3>
         <p class="pintro">{p.intro}</p>
+        {p.youtube && (<figure class="vid vfull"><div class="vimeo-wrap"><iframe src={`https://www.youtube.com/embed/${p.youtube}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></figure>)}
         <div class="metrics">{p.metrics.map((m) => (<div class="metric"><b>{m[0]}</b><span>{m[1]}</span></div>))}</div>
         <div class="blk"><p class="l">what i built</p><ul>{p.built.map((x) => (<li>{x}</li>))}</ul></div>
         {p.videos && (
