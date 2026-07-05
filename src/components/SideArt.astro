@@ -28,7 +28,7 @@ const c = cfg[page] || cfg.home;
 <div class={`hero-bg glow-${c.glow}`} aria-hidden="true">
   {c.pattern === 'grid' ? <div class="hero-grid"></div> : <div class="hero-pattern" set:html={patterns[c.pattern]}></div>}
 </div>
-<div class="stream left" aria-hidden="true"></div>
-<div class="stream right" aria-hidden="true"></div>
-<div class="deco deco-top" aria-hidden="true" set:html={motifs[c.top]}></div>
-<div class="deco deco-bottom" aria-hidden="true" set:html={motifs[c.bottom]}></div>
+<div class="col-deco" aria-hidden="true">
+  <div class="deco deco-top" set:html={motifs[c.top]}></div>
+  <div class="deco deco-bottom" set:html={motifs[c.bottom]}></div>
+</div>

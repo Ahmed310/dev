@@ -233,19 +233,12 @@ body{position:relative;}
 .hero-pattern svg{width:100%; height:100%; display:block;}
 .radar{animation:sa-radar 5s ease-out infinite;}
 @keyframes sa-radar{0%{r:150px;opacity:.6}80%{opacity:.06}100%{r:620px;opacity:0}}
+.col-deco{position:absolute; top:0; left:50%; transform:translateX(-50%); width:720px; max-width:100%; height:100%; z-index:-1; pointer-events:none;}
 .deco{pointer-events:none; opacity:.7;}
-.deco svg{display:block; height:60px; width:auto;}
-.deco-top{position:fixed; top:8px; left:50%; transform:translateX(-50%); z-index:11;}
-.deco-bottom{position:absolute; bottom:16px; left:50%; transform:translateX(-50%); z-index:1;}
-.stream{position:fixed; top:0; bottom:0; width:1px; z-index:0; pointer-events:none; background:linear-gradient(to bottom, transparent, rgba(150,160,175,.16) 12%, rgba(150,160,175,.16) 88%, transparent);}
-.stream.left{left:9vw;}
-.stream.right{right:9vw;}
-.stream::before,.stream::after{content:''; position:absolute; left:-2px; width:5px; height:5px; border-radius:50%; background:rgba(126,225,196,.85); box-shadow:0 0 7px rgba(126,225,196,.55); animation:sa-stream 6.5s linear infinite;}
-.stream::after{animation-delay:3.2s;}
-.stream.right::before{animation-duration:8s; animation-delay:1.5s;}
-.stream.right::after{animation-delay:5s;}
-@keyframes sa-stream{0%{top:8%; opacity:0}12%{opacity:1}88%{opacity:1}100%{top:92%; opacity:0}}
-@media (max-width:1180px){ .deco-top,.deco-bottom,.stream{display:none;} }
+.deco svg{display:block; height:78px; width:auto;}
+.deco-top{position:absolute; top:120px; right:6px;}
+.deco-bottom{position:absolute; bottom:120px; left:50%; transform:translateX(-50%);}
+@media (max-width:1180px){ .col-deco{display:none;} }
 .nd{fill:rgba(126,225,196,.72); animation:sa-pulse 3s ease-in-out infinite alternate;}
 .nd:nth-of-type(2){animation-delay:.5s} .nd:nth-of-type(3){animation-delay:1s} .nd:nth-of-type(4){animation-delay:1.5s} .nd:nth-of-type(5){animation-delay:.8s}
 .orbit{transform-box:view-box; transform-origin:90px 90px; animation:sa-spin 15s linear infinite;}
@@ -259,4 +252,4 @@ body{position:relative;}
 @keyframes sa-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 @keyframes sa-eq{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
 @keyframes sa-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-@media (prefers-reduced-motion:reduce){ .deco *, .hero-pattern *, .hero-grid, .stream::before, .stream::after, .radar{animation:none !important;} }
+@media (prefers-reduced-motion:reduce){ .deco *, .hero-pattern *, .hero-grid, .radar{animation:none !important;} }
