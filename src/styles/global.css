@@ -201,6 +201,10 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify
 .gcard:hover{border-color:#2f3a49; transform:translateY(-2px);}
 .gcard-media{aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; overflow:hidden; background:linear-gradient(135deg,#1b2130,#12151b);}
 .gcard-media video{width:100%; height:100%; object-fit:cover;}
+.gcard-media{position:relative;}
+.gcard-media iframe.vimeo-bg{position:absolute; inset:0; width:100%; height:100%; border:0; pointer-events:none;}
+.vimeo-wrap{position:relative; width:100%; padding-top:56.25%; border:1px solid var(--border); border-radius:10px; overflow:hidden; background:#000;}
+.vimeo-wrap iframe{position:absolute; inset:0; width:100%; height:100%; border:0;}
 .gicon{font-family:var(--mono); font-size:22px; font-weight:500; color:#5c6470; letter-spacing:1px;}
 .gcard-body{padding:11px 13px 13px;}
 .gcard-body h4{margin:0; font-size:14px; color:#eef1f6; font-weight:600;}

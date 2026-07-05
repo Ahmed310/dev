@@ -82,7 +82,7 @@ const projects = [
 const games = [
   { id: 'pokervr', name: 'PokerVR', yr: '2018–19', icon: 'PV', desc: 'Social VR poker, ported to Oculus Quest as a ground-up rebuild and shipped on the store. I built the avatar-UI draw-call optimization (~40 to 1), automated the character pipeline, and set up studio-wide builds.', links: [['quest', 'https://www.oculus.com/experiences/quest/2257223740990488/'], ['gameplay', 'https://www.youtube.com/watch?v=tQGCVHw2rTk'], ['engineering notes', 'https://medium.com/@m.ahmed310.ma/thumbnail-creation-from-prefab-in-unity-pokervr-automated-system-for-draw-call-optimization-2f488d1d7131']] },
   { id: 'eboh', name: 'Epic Battles of History', yr: '2014–18', video: '/media/games/eboh_game.mp4', desc: 'Historical strategy title. Led client-side architecture and core gameplay, built editor tooling, and mentored client engineers.', links: [['steam', 'https://store.steampowered.com/app/718750/Epic_Battles_of_History/']] },
-  { id: 'coda', name: 'Coda Quest', yr: '2014–18', icon: 'CQ', desc: 'Online educational RPG. Built crafting, in-game trading, NPC behavior, and client/server zone selection.', links: [['video', 'https://vimeo.com/202066411']] },
+  { id: 'coda', name: 'Coda Quest', yr: '2014–18', vimeo: '202066411', icon: 'CQ', desc: 'Online educational RPG. Built crafting, in-game trading, NPC behavior, and client/server zone-selection systems.', links: [['watch on vimeo', 'https://vimeo.com/202066411']] },
   { id: 'cthulhu', name: 'Cthulhu Realms', yr: '2014–18', icon: 'CR', desc: 'Digital card game. Built the game UI in Unity UGUI.', links: [['play store', 'https://play.google.com/store/apps/details?id=com.whitewizardgames.cthulhurealms'], ['video', 'https://www.youtube.com/watch?v=5GBTm6v-sNQ']] },
   { id: 'widget', name: 'Widget (UI) Manager', yr: '2016', icon: 'WM', desc: 'Code-free UI animation and management tool, adopted studio-wide and published on the Unity Asset Store.', links: [['asset store', 'https://assetstore.unity.com/packages/tools/gui/widget-ui-manager-57802'], ['video', 'https://www.youtube.com/watch?v=mzMo7oM5Qcw']] },
   { id: 'rgb', name: 'RGB Box Runner', yr: '2015', icon: 'RB', desc: 'Fast-paced endless runner in C#/XNA, featured by Microsoft on the Windows Phone Store in 4 countries.', links: [['video', 'https://www.youtube.com/watch?v=dCu4jFfOUMU']] },
@@ -117,7 +117,9 @@ const games = [
         {games.map((g) => (
           <button class="gcard" data-modal={g.id}>
             <div class="gcard-media">
-              {g.video
+              {g.vimeo
+                ? <iframe class="card-video vimeo-bg" src={`https://player.vimeo.com/video/${g.vimeo}?background=1&muted=1&autoplay=1&loop=1&autopause=0`} frameborder="0" allow="autoplay" loading="lazy" tabindex="-1"></iframe>
+                : g.video
                 ? <video class="card-video" src={`${b}${g.video}#t=0.1`} muted loop playsinline preload="metadata"></video>
                 : <span class="gicon">{g.icon}</span>}
             </div>
@@ -165,7 +167,9 @@ const games = [
         <p class="eyebrow">games &amp; tools</p>
         <h3 class="modal-title">{g.name} <span class="modal-yr">{g.yr}</span></h3>
         <p class="pintro">{g.desc}</p>
-        {g.video && (<figure class="vid vfull"><video src={`${b}${g.video}#t=0.1`} controls muted playsinline loop preload="metadata"></video></figure>)}
+        {g.vimeo
+          ? (<figure class="vid vfull"><div class="vimeo-wrap"><iframe src={`https://player.vimeo.com/video/${g.vimeo}?title=0&byline=0&portrait=0`} frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></figure>)
+          : g.video && (<figure class="vid vfull"><video src={`${b}${g.video}#t=0.1`} controls muted playsinline loop preload="metadata"></video></figure>)}
         <div class="links">{g.links.map((l) => (<a href={l[1]}>{l[0]}</a>))}</div>
       </div>
     ))}
