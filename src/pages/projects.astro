@@ -69,7 +69,7 @@ const projects = [
 
 const games = [
   { name: 'PokerVR', yr: '2018–19', desc: 'Social VR poker, ported to Oculus Quest as a ground-up rebuild and shipped on the store. I built the avatar-UI draw-call optimization (~40 to 1), automated the character pipeline, and set up studio-wide builds.', links: [['quest', 'https://www.oculus.com/experiences/quest/2257223740990488/'], ['gameplay', 'https://www.youtube.com/watch?v=tQGCVHw2rTk'], ['engineering notes', 'https://medium.com/@m.ahmed310.ma/thumbnail-creation-from-prefab-in-unity-pokervr-automated-system-for-draw-call-optimization-2f488d1d7131']] },
-  { name: 'Epic Battles of History', yr: '2014–18', desc: 'Historical strategy title. Led client-side architecture and core gameplay, built editor tooling, and mentored client engineers.', links: [['steam', 'https://store.steampowered.com/app/718750/Epic_Battles_of_History/'], ['play store', 'https://play.google.com/store/apps/details?id=com.frag.eboh']] },
+  { name: 'Epic Battles of History', yr: '2014–18', desc: 'Historical strategy title. Led client-side architecture and core gameplay, built editor tooling, and mentored client engineers.', video: '/media/games/eboh_game.mp4', links: [['steam', 'https://store.steampowered.com/app/718750/Epic_Battles_of_History/'], ['play store', 'https://play.google.com/store/apps/details?id=com.frag.eboh']] },
   { name: 'Coda Quest', yr: '2014–18', desc: 'Online educational RPG. Built crafting, in-game trading, NPC behavior, and client/server zone selection.', links: [['video', 'https://vimeo.com/202066411']] },
   { name: 'Cthulhu Realms', yr: '2014–18', desc: 'Digital card game. Built the game UI in Unity UGUI.', links: [['play store', 'https://play.google.com/store/apps/details?id=com.whitewizardgames.cthulhurealms'], ['video', 'https://www.youtube.com/watch?v=5GBTm6v-sNQ']] },
   { name: 'Widget (UI) Manager', yr: '2016', desc: 'Code-free UI animation and management tool, adopted studio-wide and published on the Unity Asset Store.', links: [['asset store', 'https://assetstore.unity.com/packages/tools/gui/widget-ui-manager-57802'], ['video', 'https://www.youtube.com/watch?v=mzMo7oM5Qcw']] },
@@ -137,6 +137,11 @@ const games = [
           <div class="game">
             <div class="game-head"><a href={g.links[0][1]}>{g.name}</a><span class="yr">{g.yr}</span></div>
             <p class="game-desc">{g.desc}</p>
+            {g.video && (
+              <figure class="vid gvid">
+                <video src={`${b}${g.video}#t=0.1`} controls muted playsinline loop preload="metadata"></video>
+              </figure>
+            )}
             <div class="glinks">{g.links.map((l) => (<a href={l[1]}>{l[0]}</a>))}</div>
           </div>
         ))}

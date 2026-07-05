@@ -176,3 +176,7 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify
 /* caption inline link */
 .cap-link{color:var(--faint);}
 .cap-link a{color:var(--accent);}
+
+/* game video */
+.gvid{margin:12px 0 4px;}
+.gvid video{width:100%; max-width:560px; display:block; border:1px solid var(--border); border-radius:10px; background:#000;}
