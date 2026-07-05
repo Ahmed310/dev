@@ -207,6 +207,9 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify
 .pblock p{margin:0; color:var(--muted); font-size:14px; line-height:1.62;}
 .embed-2{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0;}
 @media (max-width:640px){ .embed-2{grid-template-columns:1fr;} }
+.secvid{margin:14px 0 2px; max-width:540px;}
+.secmore{margin:9px 0 0; font-family:var(--mono); font-size:12px;}
+.secmore a{color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(126,225,196,.3);}
 .readmore{margin:18px 0 4px;}
 .rm-label{font-family:var(--mono); font-size:11.5px; color:var(--muted); display:block; margin-bottom:6px;}
 .gcard-media img.card-video{width:100%; height:100%; object-fit:cover;}
@@ -215,6 +218,9 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify
 .pblock p{margin:0; color:var(--muted); font-size:14px; line-height:1.62;}
 .embed-2{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0;}
 @media (max-width:640px){ .embed-2{grid-template-columns:1fr;} }
+.secvid{margin:14px 0 2px; max-width:540px;}
+.secmore{margin:9px 0 0; font-family:var(--mono); font-size:12px;}
+.secmore a{color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(126,225,196,.3);}
 .readmore{margin:18px 0 4px;}
 .rm-label{font-family:var(--mono); font-size:11.5px; color:var(--muted); display:block; margin-bottom:6px;}
 .gcard-media img.card-video{width:100%; height:100%; object-fit:cover;}
@@ -223,6 +229,9 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify
 .pblock p{margin:0; color:var(--muted); font-size:14px; line-height:1.62;}
 .embed-2{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0;}
 @media (max-width:640px){ .embed-2{grid-template-columns:1fr;} }
+.secvid{margin:14px 0 2px; max-width:540px;}
+.secmore{margin:9px 0 0; font-family:var(--mono); font-size:12px;}
+.secmore a{color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(126,225,196,.3);}
 .readmore{margin:18px 0 4px;}
 .rm-label{font-family:var(--mono); font-size:11.5px; color:var(--muted); display:block; margin-bottom:6px;}
 .gcard-media{position:relative;}
