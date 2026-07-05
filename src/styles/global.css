@@ -228,8 +228,10 @@ body{position:relative;}
 .glow-teal{background:radial-gradient(120% 80% at 50% -25%, rgba(126,225,196,.11), transparent 55%), radial-gradient(65% 55% at 82% -10%, rgba(126,225,196,.05), transparent 60%);}
 .glow-blue{background:radial-gradient(120% 80% at 50% -25%, rgba(96,150,235,.12), transparent 55%), radial-gradient(65% 55% at 18% -10%, rgba(126,225,196,.05), transparent 60%);}
 .glow-violet{background:radial-gradient(120% 80% at 50% -25%, rgba(150,120,240,.12), transparent 55%), radial-gradient(65% 55% at 82% -10%, rgba(126,225,196,.05), transparent 60%);}
-.hero-grid{position:absolute; left:50%; bottom:-2px; width:300%; height:420px; transform:translateX(-50%) perspective(260px) rotateX(66deg); transform-origin:bottom center; background-image:linear-gradient(rgba(126,225,196,.42) 1px, transparent 1px), linear-gradient(90deg, rgba(126,225,196,.42) 1px, transparent 1px); background-size:40px 40px; -webkit-mask-image:linear-gradient(to top, rgba(0,0,0,1), transparent 90%); mask-image:linear-gradient(to top, rgba(0,0,0,1), transparent 90%); opacity:.85; animation:grid-flow 1.8s linear infinite;}
-@keyframes grid-flow{from{background-position:0 0}to{background-position:0 40px}}
+.hero-grid{position:absolute; left:0; right:0; bottom:0; height:60%; overflow:hidden; perspective:210px; perspective-origin:50% 0%; -webkit-mask-image:linear-gradient(to top, #000 58%, rgba(0,0,0,.35) 82%, transparent 100%); mask-image:linear-gradient(to top, #000 58%, rgba(0,0,0,.35) 82%, transparent 100%);}
+.hero-grid::before{content:""; position:absolute; top:-30px; left:50%; width:640px; height:180px; transform:translateX(-50%); background:radial-gradient(ellipse at center, rgba(150,120,240,.22), transparent 70%); filter:blur(22px); pointer-events:none;}
+.hero-grid-floor{position:absolute; top:0; left:-50%; width:200%; height:200%; background-image:linear-gradient(to right, rgba(126,225,196,.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(126,225,196,.5) 1px, transparent 1px); background-size:46px 46px; transform-origin:50% 0; transform:rotateX(84deg); animation:grid-run 2s linear infinite;}
+@keyframes grid-run{from{transform:rotateX(84deg) translateY(0)}to{transform:rotateX(84deg) translateY(46px)}}to{background-position:0 40px}}
 .hero-dots{position:absolute; inset:0; background-image:radial-gradient(rgba(126,225,196,.2) 1.2px, transparent 1.7px); background-size:26px 26px; -webkit-mask-image:linear-gradient(to bottom, #000 25%, transparent 82%); mask-image:linear-gradient(to bottom, #000 25%, transparent 82%); opacity:.65;}
 .hero-iso{position:absolute; inset:0; background-image:linear-gradient(30deg, transparent 48%, rgba(150,120,240,.16) 49.3%, rgba(150,120,240,.16) 50.7%, transparent 52%), linear-gradient(150deg, transparent 48%, rgba(150,120,240,.16) 49.3%, rgba(150,120,240,.16) 50.7%, transparent 52%); background-size:58px 34px; -webkit-mask-image:linear-gradient(to bottom, #000 25%, transparent 82%); mask-image:linear-gradient(to bottom, #000 25%, transparent 82%); opacity:.6;}
 .hero-pattern{position:absolute; inset:0; opacity:.8; -webkit-mask-image:linear-gradient(to bottom,#000 45%,transparent 94%); mask-image:linear-gradient(to bottom,#000 45%,transparent 94%);}
@@ -268,3 +270,13 @@ body{position:relative;}
 @media (prefers-reduced-motion:reduce){ .deco *, .hero-pattern *, .hero-grid, .radar, .sweep{animation:none !important;} }
 
 @media (prefers-reduced-motion:reduce){ .radar-sweep{animation:none !important;} }
+.deco.wander{animation:target-hunt 14s ease-in-out infinite;}
+@keyframes target-hunt{
+ 0%,9%{transform:translate(0,0)}
+ 15%,25%{transform:translate(-135px,72px)}
+ 31%,43%{transform:translate(-38px,150px)}
+ 49%,60%{transform:translate(-205px,120px)}
+ 66%,78%{transform:translate(-92px,26px)}
+ 84%,94%{transform:translate(28px,104px)}
+ 100%{transform:translate(0,0)}
+}
