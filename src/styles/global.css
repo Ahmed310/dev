@@ -223,17 +223,21 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify
 }
 .tpl{display:none;}
 
-.hero-bg{position:absolute; top:0; left:0; right:0; height:620px; z-index:-1; pointer-events:none; overflow:hidden; background:radial-gradient(120% 80% at 50% -25%, rgba(126,225,196,.10), transparent 55%), radial-gradient(70% 60% at 82% -12%, rgba(130,120,235,.09), transparent 60%);}
+body{position:relative;}
+.hero-bg{position:absolute; top:0; left:0; right:0; height:640px; z-index:-1; pointer-events:none; overflow:hidden;}
+.glow-teal{background:radial-gradient(120% 80% at 50% -25%, rgba(126,225,196,.11), transparent 55%), radial-gradient(65% 55% at 82% -10%, rgba(126,225,196,.05), transparent 60%);}
+.glow-blue{background:radial-gradient(120% 80% at 50% -25%, rgba(96,150,235,.12), transparent 55%), radial-gradient(65% 55% at 18% -10%, rgba(126,225,196,.05), transparent 60%);}
+.glow-violet{background:radial-gradient(120% 80% at 50% -25%, rgba(150,120,240,.12), transparent 55%), radial-gradient(65% 55% at 82% -10%, rgba(126,225,196,.05), transparent 60%);}
 .hero-grid{position:absolute; left:50%; bottom:-2px; width:200%; height:340px; transform:translateX(-50%) perspective(520px) rotateX(62deg); transform-origin:bottom center; background-image:linear-gradient(rgba(126,225,196,.15) 1px, transparent 1px), linear-gradient(90deg, rgba(126,225,196,.15) 1px, transparent 1px); background-size:46px 46px; -webkit-mask-image:linear-gradient(to top, rgba(0,0,0,.85), transparent 72%); mask-image:linear-gradient(to top, rgba(0,0,0,.85), transparent 72%); opacity:.55;}
-
-/* ===== gutter patterns + motifs ===== */
-.gutter{position:fixed; top:0; bottom:0; width:190px; z-index:0; pointer-events:none; overflow:hidden;}
-.gutter.left{left:0;} .gutter.right{right:0;}
-.gutter::before{content:""; position:absolute; inset:0; background-image:radial-gradient(rgba(150,160,175,.13) 1px, transparent 1.6px); background-size:24px 24px; -webkit-mask-image:linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent); mask-image:linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);}
-.gutter-motif{position:absolute; top:50%; transform:translateY(-50%); opacity:.72;}
-.gutter.left .gutter-motif{left:26px;} .gutter.right .gutter-motif{right:26px;}
-.gutter svg{display:block;}
-@media (max-width:1180px){ .gutter{display:none;} }
+.hero-pattern{position:absolute; inset:0; opacity:.8; -webkit-mask-image:linear-gradient(to bottom,#000 45%,transparent 94%); mask-image:linear-gradient(to bottom,#000 45%,transparent 94%);}
+.hero-pattern svg{width:100%; height:100%; display:block;}
+.radar{animation:sa-radar 5s ease-out infinite;}
+@keyframes sa-radar{0%{r:150px;opacity:.6}80%{opacity:.06}100%{r:620px;opacity:0}}
+.deco{position:absolute; z-index:0; pointer-events:none; opacity:.72;}
+.deco svg{display:block;}
+.deco-top{top:100px; left:4vw;}
+.deco-bottom{bottom:72px; right:4vw;}
+@media (max-width:1180px){ .deco{display:none;} }
 .nd{fill:rgba(126,225,196,.72); animation:sa-pulse 3s ease-in-out infinite alternate;}
 .nd:nth-of-type(2){animation-delay:.5s} .nd:nth-of-type(3){animation-delay:1s} .nd:nth-of-type(4){animation-delay:1.5s} .nd:nth-of-type(5){animation-delay:.8s}
 .orbit{transform-box:view-box; transform-origin:90px 90px; animation:sa-spin 15s linear infinite;}
@@ -247,4 +251,4 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify
 @keyframes sa-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 @keyframes sa-eq{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
 @keyframes sa-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-@media (prefers-reduced-motion:reduce){ .gutter *{animation:none !important;} }
+@media (prefers-reduced-motion:reduce){ .deco *, .hero-pattern *, .hero-grid{animation:none !important;} }
