@@ -20,13 +20,13 @@ const patterns: Record<string, string> = {
 const cfg: Record<string, { glow: string; pattern: string; top: string; bottom: string }> = {
   home: { glow: 'teal', pattern: 'grid', top: 'network', bottom: 'cube' },
   about: { glow: 'blue', pattern: 'rings', top: 'spatial', bottom: 'voice' },
-  projects: { glow: 'violet', pattern: 'constellation', top: 'cube', bottom: 'game' },
-  blog: { glow: 'teal', pattern: 'waves', top: 'code', bottom: 'network' },
+  projects: { glow: 'violet', pattern: 'iso', top: 'cube', bottom: 'game' },
+  blog: { glow: 'teal', pattern: 'dots', top: 'code', bottom: 'network' },
 };
 const c = cfg[page] || cfg.home;
 ---
 <div class={`hero-bg glow-${c.glow}`} aria-hidden="true">
-  {c.pattern === 'grid' ? <div class="hero-grid"></div> : <div class="hero-pattern" set:html={patterns[c.pattern]}></div>}
+  {c.pattern === 'grid' ? <div class="hero-grid"></div> : c.pattern === 'dots' ? <div class="hero-dots"></div> : c.pattern === 'iso' ? <div class="hero-iso"></div> : <div class="hero-pattern" set:html={patterns[c.pattern]}></div>}
 </div>
 <div class="col-deco" aria-hidden="true">
   <div class="deco deco-top" set:html={motifs[c.top]}></div>
