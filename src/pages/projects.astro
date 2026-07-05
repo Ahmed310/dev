@@ -230,4 +230,15 @@ const games = [
   });
   closeBtn.addEventListener('click', closeModal);
   modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.has
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hasAttribute('hidden')) closeModal(); });
+
+  // autoplay card previews when on screen
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const v = entry.target;
+      if (entry.isIntersecting) { v.play().catch(() => {}); }
+      else { v.pause(); }
+    });
+  }, { threshold: 0.35 });
+  document.querySelectorAll('.card-video').forEach((v) => io.observe(v));
+</script>
