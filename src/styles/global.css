@@ -228,7 +228,7 @@ body{position:relative;}
 .glow-teal{background:radial-gradient(120% 80% at 50% -25%, rgba(126,225,196,.11), transparent 55%), radial-gradient(65% 55% at 82% -10%, rgba(126,225,196,.05), transparent 60%);}
 .glow-blue{background:radial-gradient(120% 80% at 50% -25%, rgba(96,150,235,.12), transparent 55%), radial-gradient(65% 55% at 18% -10%, rgba(126,225,196,.05), transparent 60%);}
 .glow-violet{background:radial-gradient(120% 80% at 50% -25%, rgba(150,120,240,.12), transparent 55%), radial-gradient(65% 55% at 82% -10%, rgba(126,225,196,.05), transparent 60%);}
-.hero-grid{position:absolute; left:50%; bottom:-2px; width:200%; height:420px; transform:translateX(-50%) perspective(560px) rotateX(60deg); transform-origin:bottom center; background-image:linear-gradient(rgba(126,225,196,.22) 1px, transparent 1px), linear-gradient(90deg, rgba(126,225,196,.22) 1px, transparent 1px); background-size:48px 48px; -webkit-mask-image:linear-gradient(to top, rgba(0,0,0,.95), transparent 78%); mask-image:linear-gradient(to top, rgba(0,0,0,.95), transparent 78%); opacity:.8; animation:grid-flow 4s linear infinite;}
+.hero-grid{position:absolute; left:50%; bottom:-2px; width:220%; height:460px; transform:translateX(-50%) perspective(420px) rotateX(64deg); transform-origin:bottom center; background-image:linear-gradient(rgba(126,225,196,.34) 1px, transparent 1px), linear-gradient(90deg, rgba(126,225,196,.34) 1px, transparent 1px); background-size:48px 48px; -webkit-mask-image:linear-gradient(to top, rgba(0,0,0,.98), transparent 80%); mask-image:linear-gradient(to top, rgba(0,0,0,.98), transparent 80%); opacity:.85; animation:grid-flow 2.6s linear infinite;}
 @keyframes grid-flow{from{background-position:0 0}to{background-position:0 48px}}
 .hero-dots{position:absolute; inset:0; background-image:radial-gradient(rgba(126,225,196,.2) 1.2px, transparent 1.7px); background-size:26px 26px; -webkit-mask-image:linear-gradient(to bottom, #000 25%, transparent 82%); mask-image:linear-gradient(to bottom, #000 25%, transparent 82%); opacity:.65;}
 .hero-iso{position:absolute; inset:0; background-image:linear-gradient(30deg, transparent 48%, rgba(150,120,240,.16) 49.3%, rgba(150,120,240,.16) 50.7%, transparent 52%), linear-gradient(150deg, transparent 48%, rgba(150,120,240,.16) 49.3%, rgba(150,120,240,.16) 50.7%, transparent 52%); background-size:58px 34px; -webkit-mask-image:linear-gradient(to bottom, #000 25%, transparent 82%); mask-image:linear-gradient(to bottom, #000 25%, transparent 82%); opacity:.6;}
@@ -237,6 +237,7 @@ body{position:relative;}
 .radar{animation:sa-radar 5s ease-out infinite;}
 .sweep{transform-box:view-box; transform-origin:720px 30px; animation:sa-spin 9s linear infinite;}
 .reticle-ring{transform-box:view-box; transform-origin:50px 50px; animation:sa-spin 12s linear infinite;}
+.hsweep{transform-box:view-box; transform-origin:720px 18px; animation:sa-spin 8s linear infinite;}
 @keyframes sa-radar{0%{r:150px;opacity:.6}80%{opacity:.06}100%{r:620px;opacity:0}}
 .col-deco{position:absolute; top:0; left:50%; transform:translateX(-50%); width:720px; max-width:100%; height:100%; z-index:-1; pointer-events:none;}
 .deco{pointer-events:none; opacity:.7;}
