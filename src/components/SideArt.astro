@@ -55,8 +55,8 @@ const c = cfg[page] || cfg.home;
     ctx.font=fs+'px "JetBrains Mono", monospace';
     for(var i=0;i<cols;i++){
       var t=chars[Math.floor(Math.random()*chars.length)], y=drops[i]*fs;
-      ctx.fillStyle='rgba(230,255,245,0.85)'; ctx.fillText(t,i*fs,y);
-      ctx.fillStyle='rgba(126,225,196,0.5)'; ctx.fillText(t,i*fs,y-fs);
+      ctx.fillStyle='rgba(215,245,235,0.7)'; ctx.fillText(t,i*fs,y);
+      ctx.fillStyle='rgba(126,225,196,0.35)'; ctx.fillText(t,i*fs,y-fs);
       if(y>h && Math.random()>0.977) drops[i]=0;
       drops[i]++;
     }
