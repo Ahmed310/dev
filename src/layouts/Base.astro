@@ -24,6 +24,7 @@ const { title, description = 'Game developer building real-time multiplayer syst
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   </head>
   <body>
+    <div class="hero-bg" aria-hidden="true">{decor === 'home' && <div class="hero-grid"></div>}</div>
     <SideArt page={decor} />
     <Nav />
     <slot />

@@ -223,12 +223,17 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify
 }
 .tpl{display:none;}
 
-/* ===== side decorations ===== */
-.side-art{position:fixed; top:50%; transform:translateY(-50%); z-index:0; pointer-events:none; opacity:.7;}
-.side-art.left{left:3vw;}
-.side-art.right{right:3vw;}
-.side-art svg{display:block;}
-@media (max-width:1180px){ .side-art{display:none;} }
+.hero-bg{position:absolute; top:0; left:0; right:0; height:620px; z-index:-1; pointer-events:none; overflow:hidden; background:radial-gradient(120% 80% at 50% -25%, rgba(126,225,196,.10), transparent 55%), radial-gradient(70% 60% at 82% -12%, rgba(130,120,235,.09), transparent 60%);}
+.hero-grid{position:absolute; left:50%; bottom:-2px; width:200%; height:340px; transform:translateX(-50%) perspective(520px) rotateX(62deg); transform-origin:bottom center; background-image:linear-gradient(rgba(126,225,196,.15) 1px, transparent 1px), linear-gradient(90deg, rgba(126,225,196,.15) 1px, transparent 1px); background-size:46px 46px; -webkit-mask-image:linear-gradient(to top, rgba(0,0,0,.85), transparent 72%); mask-image:linear-gradient(to top, rgba(0,0,0,.85), transparent 72%); opacity:.55;}
+
+/* ===== gutter patterns + motifs ===== */
+.gutter{position:fixed; top:0; bottom:0; width:190px; z-index:0; pointer-events:none; overflow:hidden;}
+.gutter.left{left:0;} .gutter.right{right:0;}
+.gutter::before{content:""; position:absolute; inset:0; background-image:radial-gradient(rgba(150,160,175,.13) 1px, transparent 1.6px); background-size:24px 24px; -webkit-mask-image:linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent); mask-image:linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);}
+.gutter-motif{position:absolute; top:50%; transform:translateY(-50%); opacity:.72;}
+.gutter.left .gutter-motif{left:26px;} .gutter.right .gutter-motif{right:26px;}
+.gutter svg{display:block;}
+@media (max-width:1180px){ .gutter{display:none;} }
 .nd{fill:rgba(126,225,196,.72); animation:sa-pulse 3s ease-in-out infinite alternate;}
 .nd:nth-of-type(2){animation-delay:.5s} .nd:nth-of-type(3){animation-delay:1s} .nd:nth-of-type(4){animation-delay:1.5s} .nd:nth-of-type(5){animation-delay:.8s}
 .orbit{transform-box:view-box; transform-origin:90px 90px; animation:sa-spin 15s linear infinite;}
@@ -242,4 +247,4 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify
 @keyframes sa-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 @keyframes sa-eq{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
 @keyframes sa-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-@media (prefers-reduced-motion:reduce){ .side-art *{animation:none !important;} }
+@media (prefers-reduced-motion:reduce){ .gutter *{animation:none !important;} }

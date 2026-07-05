@@ -19,5 +19,5 @@ const map: Record<string, [string, string]> = {
 };
 const [left, right] = map[page] || map.home;
 ---
-<div class="side-art left" aria-hidden="true" set:html={motifs[left]}></div>
-<div class="side-art right" aria-hidden="true" set:html={motifs[right]}></div>
+<div class="gutter left" aria-hidden="true"><div class="gutter-motif" set:html={motifs[left]}></div></div>
+<div class="gutter right" aria-hidden="true"><div class="gutter-motif" set:html={motifs[right]}></div></div>
