@@ -201,6 +201,30 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify
 .gcard:hover{border-color:#2f3a49; transform:translateY(-2px);}
 .gcard-media{aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; overflow:hidden; background:linear-gradient(135deg,#1b2130,#12151b);}
 .gcard-media video{width:100%; height:100%; object-fit:cover;}
+.gcard-media img.card-video{width:100%; height:100%; object-fit:cover;}
+.pblock{margin:16px 0;}
+.pblock h4{font-size:14px; margin:0 0 5px; color:var(--text);}
+.pblock p{margin:0; color:var(--muted); font-size:14px; line-height:1.62;}
+.embed-2{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0;}
+@media (max-width:640px){ .embed-2{grid-template-columns:1fr;} }
+.readmore{margin:18px 0 4px;}
+.rm-label{font-family:var(--mono); font-size:11.5px; color:var(--muted); display:block; margin-bottom:6px;}
+.gcard-media img.card-video{width:100%; height:100%; object-fit:cover;}
+.pblock{margin:16px 0;}
+.pblock h4{font-size:14px; margin:0 0 5px; color:var(--text);}
+.pblock p{margin:0; color:var(--muted); font-size:14px; line-height:1.62;}
+.embed-2{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0;}
+@media (max-width:640px){ .embed-2{grid-template-columns:1fr;} }
+.readmore{margin:18px 0 4px;}
+.rm-label{font-family:var(--mono); font-size:11.5px; color:var(--muted); display:block; margin-bottom:6px;}
+.gcard-media img.card-video{width:100%; height:100%; object-fit:cover;}
+.pblock{margin:16px 0;}
+.pblock h4{font-size:14px; margin:0 0 5px; color:var(--text);}
+.pblock p{margin:0; color:var(--muted); font-size:14px; line-height:1.62;}
+.embed-2{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0;}
+@media (max-width:640px){ .embed-2{grid-template-columns:1fr;} }
+.readmore{margin:18px 0 4px;}
+.rm-label{font-family:var(--mono); font-size:11.5px; color:var(--muted); display:block; margin-bottom:6px;}
 .gcard-media{position:relative;}
 .gcard-media iframe.vimeo-bg{position:absolute; inset:0; width:100%; height:100%; border:0; pointer-events:none;}
 .vimeo-wrap{position:relative; width:100%; padding-top:56.25%; border:1px solid var(--border); border-radius:10px; overflow:hidden; background:#000;}
