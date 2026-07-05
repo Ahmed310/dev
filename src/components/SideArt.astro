@@ -30,14 +30,36 @@ const cfg: Record<string, { glow: string; pattern: string; top: string; bottom: 
   home: { glow: 'teal', pattern: 'grid', top: 'atom', bottom: 'cube' },
   about: { glow: 'teal', pattern: 'radar', top: 'isostack', bottom: 'pyramid' },
   projects: { glow: 'violet', pattern: 'honeycomb', top: 'reticle', bottom: 'game' },
-  blog: { glow: 'teal', pattern: 'dots', top: 'code', bottom: 'packet' },
+  blog: { glow: 'teal', pattern: 'matrix', top: 'code', bottom: 'packet' },
 };
 const c = cfg[page] || cfg.home;
 ---
 <div class={`hero-bg glow-${c.glow}`} aria-hidden="true">
-  {c.pattern === 'grid' ? <div class="hero-grid"><div class="grid-half grid-top"><div class="hero-grid-floor"></div></div><div class="grid-half grid-bot"><div class="hero-grid-floor"></div></div></div> : c.pattern === 'dots' ? <div class="hero-dots"></div> : c.pattern === 'iso' ? <div class="hero-iso"></div> : c.pattern === 'radar' ? (<div class="hero-radar"><svg class="radar-rings" viewBox="0 0 1440 640" preserveAspectRatio="xMidYMin slice" fill="none"><g stroke="rgba(126,225,196,.08)"><circle cx="720" cy="18" r="150"/><circle cx="720" cy="18" r="310"/><circle cx="720" cy="18" r="470"/><circle cx="720" cy="18" r="630"/></g><circle cx="720" cy="18" r="3" fill="rgba(126,225,196,.5)"/></svg><div class="radar-sweep"></div></div>) : <div class="hero-pattern" set:html={patterns[c.pattern]}></div>}
+  {c.pattern === 'matrix' ? <canvas class="hero-matrix"></canvas> : c.pattern === 'grid' ? <div class="hero-grid"><div class="grid-half grid-top"><div class="hero-grid-floor"></div></div><div class="grid-half grid-bot"><div class="hero-grid-floor"></div></div></div> : c.pattern === 'dots' ? <div class="hero-dots"></div> : c.pattern === 'iso' ? <div class="hero-iso"></div> : c.pattern === 'radar' ? (<div class="hero-radar"><svg class="radar-rings" viewBox="0 0 1440 640" preserveAspectRatio="xMidYMin slice" fill="none"><g stroke="rgba(126,225,196,.08)"><circle cx="720" cy="18" r="150"/><circle cx="720" cy="18" r="310"/><circle cx="720" cy="18" r="470"/><circle cx="720" cy="18" r="630"/></g><circle cx="720" cy="18" r="3" fill="rgba(126,225,196,.5)"/></svg><div class="radar-sweep"></div></div>) : <div class="hero-pattern" set:html={patterns[c.pattern]}></div>}
 </div>
 <div class="col-deco" aria-hidden="true">
   <div class={`deco deco-top${c.top === 'reticle' ? ' wander' : ''}`} set:html={motifs[c.top]}></div>
   <div class="deco deco-bottom" set:html={motifs[c.bottom]}></div>
 </div>
+
+<script is:inline>
+(function(){
+  var cv=document.querySelector('canvas.hero-matrix'); if(!cv) return;
+  var ctx=cv.getContext('2d');
+  var fs=14, chars='アカサタナﾊﾋﾌﾔﾗ0123456789<>{}[]=+*ABCDEF'.split(''), drops=[], cols=0, dpr=Math.min(window.devicePixelRatio||1,2);
+  function resize(){ var w=cv.clientWidth,h=cv.clientHeight; cv.width=w*dpr; cv.height=h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); cols=Math.floor(w/fs); drops=Array(cols).fill(0).map(function(){return Math.random()*-30;}); ctx.clearRect(0,0,w,h); }
+  resize(); window.addEventListener('resize',resize);
+  setInterval(function(){
+    var w=cv.clientWidth,h=cv.clientHeight;
+    ctx.fillStyle='rgba(11,13,17,0.16)'; ctx.fillRect(0,0,w,h);
+    ctx.font=fs+'px "JetBrains Mono", monospace';
+    for(var i=0;i<cols;i++){
+      var t=chars[Math.floor(Math.random()*chars.length)], y=drops[i]*fs;
+      ctx.fillStyle='rgba(230,255,245,0.85)'; ctx.fillText(t,i*fs,y);
+      ctx.fillStyle='rgba(126,225,196,0.5)'; ctx.fillText(t,i*fs,y-fs);
+      if(y>h && Math.random()>0.977) drops[i]=0;
+      drops[i]++;
+    }
+  },80);
+})();
+</script>
