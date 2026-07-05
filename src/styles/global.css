@@ -222,3 +222,24 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify
   .modal-panel{padding:26px 18px 28px;}
 }
 .tpl{display:none;}
+
+/* ===== side decorations ===== */
+.side-art{position:fixed; top:50%; transform:translateY(-50%); z-index:0; pointer-events:none; opacity:.5;}
+.side-art.left{left:3vw;}
+.side-art.right{right:3vw;}
+.side-art svg{display:block;}
+@media (max-width:1180px){ .side-art{display:none;} }
+.nd{fill:rgba(126,225,196,.72); animation:sa-pulse 3s ease-in-out infinite alternate;}
+.nd:nth-of-type(2){animation-delay:.5s} .nd:nth-of-type(3){animation-delay:1s} .nd:nth-of-type(4){animation-delay:1.5s} .nd:nth-of-type(5){animation-delay:.8s}
+.orbit{transform-box:view-box; transform-origin:90px 90px; animation:sa-spin 15s linear infinite;}
+.floaty{animation:sa-float 7s ease-in-out infinite;}
+.bar{transform-box:fill-box; transform-origin:bottom; animation:sa-eq 1.3s ease-in-out infinite;}
+.bar:nth-of-type(2){animation-delay:.15s} .bar:nth-of-type(3){animation-delay:.3s} .bar:nth-of-type(4){animation-delay:.45s} .bar:nth-of-type(5){animation-delay:.2s} .bar:nth-of-type(6){animation-delay:.35s}
+.bobby{animation:sa-bob 4.5s ease-in-out infinite;}
+.glow{animation:sa-pulse 3.5s ease-in-out infinite alternate;}
+@keyframes sa-pulse{from{opacity:.28}to{opacity:.95}}
+@keyframes sa-spin{to{transform:rotate(360deg)}}
+@keyframes sa-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes sa-eq{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+@keyframes sa-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@media (prefers-reduced-motion:reduce){ .side-art *{animation:none !important;} }

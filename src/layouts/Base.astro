@@ -2,12 +2,14 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import SideArt from '../components/SideArt.astro';
 
 interface Props {
   title: string;
   description?: string;
+  decor?: string;
 }
-const { title, description = 'Game developer building real-time multiplayer systems: netcode, voice, and infrastructure for shared VR.' } = Astro.props;
+const { title, description = 'Game developer building real-time multiplayer systems: netcode, voice, and infrastructure for shared VR.', decor = 'home' } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -22,6 +24,7 @@ const { title, description = 'Game developer building real-time multiplayer syst
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   </head>
   <body>
+    <SideArt page={decor} />
     <Nav />
     <slot />
     <Footer />
