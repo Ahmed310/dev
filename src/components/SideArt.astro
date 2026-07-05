@@ -23,12 +23,13 @@ const patterns: Record<string, string> = {
   waves: `<svg class="pat" viewBox="0 0 1440 260" preserveAspectRatio="none" fill="none"><path d="M0 90 C 240 30 480 150 720 90 S 1200 30 1440 90" stroke="rgba(150,160,175,.1)" stroke-width="1.5"/><path d="M0 130 C 240 70 480 190 720 130 S 1200 70 1440 130" stroke="rgba(126,225,196,.17)" stroke-width="1.5"/><path d="M0 170 C 240 110 480 230 720 170 S 1200 110 1440 170" stroke="rgba(126,225,196,.1)" stroke-width="1.5"/></svg>`,
   plus: `<svg class="pat" viewBox="0 0 1440 640" preserveAspectRatio="xMidYMid slice"><defs><pattern id="plusgrid" width="46" height="46" patternUnits="userSpaceOnUse"><path d="M23 15 v16 M15 23 h16" stroke="rgba(96,150,235,.2)" stroke-width="1.2" stroke-linecap="round"/></pattern></defs><rect width="1440" height="640" fill="url(#plusgrid)"/></svg>`,
   radar: `<svg class="pat" viewBox="0 0 1440 640" preserveAspectRatio="xMidYMin slice" fill="none"><g stroke="rgba(126,225,196,.08)"><circle cx="720" cy="18" r="150"/><circle cx="720" cy="18" r="310"/><circle cx="720" cy="18" r="470"/><circle cx="720" cy="18" r="630"/></g><g class="hsweep"><line x1="720" y1="18" x2="720" y2="660" stroke="rgba(126,225,196,.26)" stroke-width="1.5"/><line x1="720" y1="18" x2="686" y2="660" stroke="rgba(126,225,196,.12)" stroke-width="1"/><line x1="720" y1="18" x2="654" y2="654" stroke="rgba(126,225,196,.06)" stroke-width="1"/></g></svg>`,
+  honeycomb: `<svg class="pat" viewBox="0 0 1440 640" preserveAspectRatio="xMidYMid slice" fill="none" stroke="rgba(150,120,240,.2)"><defs><pattern id="hxg" width="36" height="62" patternUnits="userSpaceOnUse" patternTransform="scale(1.5)"><path d="M18 0 L36 10.4 L36 31.2 L18 41.6 L0 31.2 L0 10.4 Z" fill="none" stroke-width="1"/><path d="M18 41.6 L18 62 M36 31.2 L54 41.6 M0 31.2 L-18 41.6" stroke-width="1"/></pattern></defs><rect width="1440" height="640" fill="url(#hxg)"/></svg>`,
 };
 
 const cfg: Record<string, { glow: string; pattern: string; top: string; bottom: string }> = {
   home: { glow: 'teal', pattern: 'grid', top: 'atom', bottom: 'cube' },
   about: { glow: 'teal', pattern: 'radar', top: 'isostack', bottom: 'pyramid' },
-  projects: { glow: 'violet', pattern: 'iso', top: 'reticle', bottom: 'game' },
+  projects: { glow: 'violet', pattern: 'honeycomb', top: 'reticle', bottom: 'game' },
   blog: { glow: 'teal', pattern: 'dots', top: 'code', bottom: 'packet' },
 };
 const c = cfg[page] || cfg.home;
