@@ -84,16 +84,18 @@ const games = [
     desc: 'Social VR poker with a live community, ported to Oculus Quest as a ground-up rebuild and shipped on the store. I owned the systems that let a small team move fast across Rift, Gear/Go and Quest: an automated character pipeline, a draw-call optimization that took the friends UI from roughly 40 draw calls to 1, and a single-codebase build pipeline spanning every platform.',
     body: [
       { h: 'Automated character pipeline', p: 'Adding a new avatar was a manual, hour-long job: import the FBX, hand-build a prefab, then QA across every character. I built a designer-friendly Unity editor tool that generates platform-specific prefabs (Rift and Gear/Quest) straight from an FBX, driven by XML-serialized meta classes holding mesh, IK, material and anchor data, with visual flags for badly exported models. Integration time dropped from over an hour to under 5 minutes, with far less human error, and the same meta data powers in-game avatar customization at runtime through a small command pattern.',
-        yt: 'RtDwnf5qxh4', cap: 'The character creation tool in action: new avatars added in a few clicks.',
         post: ['Read the write-up: character creation', 'https://medium.com/@m.ahmed310.ma/character-creation-in-pokervr-9ebde1ae52eb'] },
       { h: 'Draw-call optimization (~40 to 1)', p: 'Each avatar in the friends list was assembled from head, face, torso and hair meshes, 3-4 draw calls each, up to roughly 40 on a page of ten friends, which is expensive on a VR frame budget. I pre-rendered every valid customization combination to transparent thumbnails, packed them into a Texture2DArray with a generated JSON index, and wrote a custom UI shader that billboards the right avatar from a single index. That collapsed the entire list to one draw call, with thousands of thumbnails generated automatically in about 5 minutes and zero runtime mesh swapping.',
-        yt: 'qIODCLX6hKM', cap: 'Automated thumbnail capture from prefabs, the basis for the one-draw-call friends list.',
         post: ['Read the write-up: draw-call optimization', 'https://medium.com/@m.ahmed310.ma/thumbnail-creation-from-prefab-in-unity-pokervr-automated-system-for-draw-call-optimization-2f488d1d7131'] },
       { h: 'Single codebase and build pipeline', p: 'Quest began as a separate project from Rift and Gear/Go, so every feature and fix meant duplicate work. I unified all platforms under one codebase: bootstrap, UI and game scenes split into code-only bases plus per-platform art, a base input manager with Rift and Gear/Go implementations, and editor tools that swap platform materials and shaders, toggle scripting symbols, rename inactive Resources folders, and set build scenes automatically. Combined with a Unity Cache Server for fast platform switching, this cut switch times from hours to minutes and removed a whole class of manual build errors.',
         post: ['Read the write-up: build pipeline and single codebase', 'https://medium.com/@m.ahmed310.ma/build-pipeline-and-single-codebase-management-in-pokervr-9f1547ac5b2d'] },
     ],
-    links: [['quest', 'https://www.oculus.com/experiences/quest/2257223740990488/'], ['gameplay', 'https://www.youtube.com/watch?v=tQGCVHw2rTk']] },
-  { id: 'eboh', name: 'Epic Battles of History', yr: '2014–18', video: '/media/games/eboh_game.mp4', desc: 'Historical strategy title. Led client-side architecture and core gameplay, built editor tooling, and mentored client engineers.', links: [['steam', 'https://store.steampowered.com/app/718750/Epic_Battles_of_History/']] },
+    videos: [
+      { yt: 'RtDwnf5qxh4', cap: 'Character creation tool' },
+      { yt: 'qIODCLX6hKM', cap: 'Automated avatar thumbnails' },
+    ],
+    links: [] },
+  { id: 'eboh', name: 'Epic Battles of History', yr: '2014–18', video: '/media/games/eboh_game.mp4', desc: 'Historical strategy card game shipped on Steam. As client-side lead I set up each of the core game systems, then onboarded junior developers, distributed the work across the team and led it day to day, while still building major features myself. I owned the editor tooling and build automation, solved the 2D and 3D art-pipeline integration, and added a patching system that shipped only the diff so players received fast incremental updates instead of full re-downloads. I also took the title cross-platform. (More detail in my CV.)', links: [['steam', 'https://store.steampowered.com/app/718750/Epic_Battles_of_History/']] },
   { id: 'coda', name: 'Coda Quest', yr: '2014–18', vimeo: '202066411', icon: 'CQ', desc: 'An online educational RPG that taught kids real skills through play. I worked across the client and server gameplay systems: a crafting system for combining materials into new gear, a player-to-player trading system with the validation and safeguards an in-game economy needs, and NPC behavior that drove quests and world interactions. On the networking side I built the client/server zone-selection system that routed players into the correct world zones and kept them synchronized as they moved between areas, so the world stayed populated and responsive.', links: [['watch on vimeo', 'https://vimeo.com/202066411']] },
   { id: 'cthulhu', name: 'Cthulhu Realms', yr: '2014–18', icon: 'CR', desc: 'Digital card game. Built the game UI in Unity UGUI.', links: [['play store', 'https://play.google.com/store/apps/details?id=com.whitewizardgames.cthulhurealms'], ['video', 'https://www.youtube.com/watch?v=5GBTm6v-sNQ']] },
   { id: 'widget', name: 'Widget (UI) Manager', yr: '2016', icon: 'WM', desc: 'Code-free UI animation and management tool, adopted studio-wide and published on the Unity Asset Store.', links: [['asset store', 'https://assetstore.unity.com/packages/tools/gui/widget-ui-manager-57802'], ['video', 'https://www.youtube.com/watch?v=mzMo7oM5Qcw']] },
@@ -186,8 +188,9 @@ const games = [
           : g.vimeo
           ? (<figure class="vid vfull"><div class="vimeo-wrap"><iframe src={`https://player.vimeo.com/video/${g.vimeo}?title=0&byline=0&portrait=0`} frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></figure>)
           : g.video && (<figure class="vid vfull"><video src={`${b}${g.video}#t=0.1`} controls muted playsinline loop preload="metadata"></video></figure>)}
-        {g.body && g.body.map((sec) => (<div class="pblock"><h4>{sec.h}</h4><p>{sec.p}</p>{sec.yt && (<figure class="vid secvid"><div class="vimeo-wrap"><iframe src={`https://www.youtube.com/embed/${sec.yt}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><figcaption>{sec.cap}</figcaption></figure>)}{sec.post && (<p class="secmore"><a href={sec.post[1]}>{sec.post[0]} &rarr;</a></p>)}</div>))}
-        <div class="links">{g.links.map((l) => (<a href={l[1]}>{l[0]}</a>))}</div>
+        {g.videos && (<div class="embed-2 compact">{g.videos.map((v) => (<figure class="vid"><div class="vimeo-wrap"><iframe src={`https://www.youtube.com/embed/${v.yt}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><figcaption>{v.cap}</figcaption></figure>))}</div>)}
+        {g.body && g.body.map((sec) => (<div class="pblock"><h4>{sec.h}</h4><p>{sec.p}</p>{sec.post && (<p class="secmore"><a href={sec.post[1]}>{sec.post[0]} &rarr;</a></p>)}</div>))}
+        {g.links && g.links.length > 0 && (<div class="links">{g.links.map((l) => (<a href={l[1]}>{l[0]}</a>))}</div>)}
       </div>
     ))}
 
@@ -227,15 +230,4 @@ const games = [
   });
   closeBtn.addEventListener('click', closeModal);
   modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hasAttribute('hidden')) closeModal(); });
-
-  // autoplay card previews when on screen
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      const v = entry.target;
-      if (entry.isIntersecting) { v.play().catch(() => {}); }
-      else { v.pause(); }
-    });
-  }, { threshold: 0.35 });
-  document.querySelectorAll('.card-video').forEach((v) => io.observe(v));
-</script>
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.has
