@@ -38,6 +38,7 @@ h1.hero{
   margin:0 0 34px; color:#eef1f6; max-width:640px;
 }
 .lead{font-size:18px; color:#cdd3dd; max-width:600px; margin:0 0 30px;}
+.lead strong{color:#7ee1c4; font-weight:700;}
 .prose p{margin:0 0 22px; color:#cdd3dd;}
 .prose strong{color:#7ee1c4; font-weight:700;}
 
