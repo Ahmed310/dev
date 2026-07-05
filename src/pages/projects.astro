@@ -4,8 +4,12 @@ const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const projects = [
   {
+    id: 'immersed', badge: 'Production', badgeType: 'prod',
+    title: 'Immersed',
+    card: 'VR metaverse collaboration. I replaced Photon Fusion with my own networking stack (Entangle).',
+    preview: { type: 'video', src: '/media/immersed/Immersed_100.mp4' },
     eyebrow: 'immersed · vr metaverse collaboration',
-    title: 'Entangle: my networking stack, in production',
+    detailTitle: 'Entangle: my networking stack, in production',
     intro: 'Immersed ran on Photon Fusion, which capped scale and drove a steep monthly bill. I replaced it with my own real-time stack and owned the whole collaboration experience.',
     metrics: [['100+', 'users / room'], ['~65%', 'cloud cost cut']],
     built: [
@@ -24,8 +28,12 @@ const projects = [
     links: [['immersed.com', 'https://immersed.com/']],
   },
   {
+    id: 'arthur', badge: 'Production', badgeType: 'prod',
+    title: 'Arthur',
+    card: 'VR virtual office, scaled to 100+ users on Quest 2 with network LOD and a ground-up WebGL rebuild.',
+    preview: { type: 'gif', src: '/media/arthur/NetworkPhysics_Arthur.gif' },
     eyebrow: 'arthur · vr virtual office',
-    title: 'Scaling VR meetings to 100+ on a Quest 2',
+    detailTitle: 'Scaling VR meetings to 100+ on a Quest 2',
     intro: 'Getting 100+ people into one VR room on a Quest 2 means fighting two budgets at once: bandwidth and frame time. Onboarding also relied on a costly cloud-streaming setup.',
     metrics: [['100+', 'users / room'], ['0', 'install friction']],
     built: [
@@ -41,8 +49,12 @@ const projects = [
     links: [['arthur.digital', 'https://arthur.digital/']],
   },
   {
-    eyebrow: 'open source · .net 8 + unity',
+    id: 'fignet', badge: 'Library', badgeType: 'library',
     title: 'FigNet',
+    card: '.NET networking framework with 6,000+ NuGet installs, plus the Entangle room layer and FnVoice engine.',
+    preview: { type: 'video', src: '/media/fignet/among_us_mode_300.mp4' },
+    eyebrow: 'open source · .net 8 + unity',
+    detailTitle: 'FigNet',
     intro: 'My open-source networking framework in .NET. On top of it, Entangle adds the room and gameplay layer, and FnVoice handles real-time voice. Together they cover the parts most teams license.',
     metrics: [['6,000+', 'NuGet downloads'], ['300+', 'players / room'], ['7', 'voice platforms']],
     built: [
@@ -68,12 +80,12 @@ const projects = [
 ];
 
 const games = [
-  { name: 'PokerVR', yr: '2018–19', desc: 'Social VR poker, ported to Oculus Quest as a ground-up rebuild and shipped on the store. I built the avatar-UI draw-call optimization (~40 to 1), automated the character pipeline, and set up studio-wide builds.', links: [['quest', 'https://www.oculus.com/experiences/quest/2257223740990488/'], ['gameplay', 'https://www.youtube.com/watch?v=tQGCVHw2rTk'], ['engineering notes', 'https://medium.com/@m.ahmed310.ma/thumbnail-creation-from-prefab-in-unity-pokervr-automated-system-for-draw-call-optimization-2f488d1d7131']] },
-  { name: 'Epic Battles of History', yr: '2014–18', desc: 'Historical strategy title. Led client-side architecture and core gameplay, built editor tooling, and mentored client engineers.', video: '/media/games/eboh_game.mp4', links: [['steam', 'https://store.steampowered.com/app/718750/Epic_Battles_of_History/']] },
-  { name: 'Coda Quest', yr: '2014–18', desc: 'Online educational RPG. Built crafting, in-game trading, NPC behavior, and client/server zone selection.', links: [['video', 'https://vimeo.com/202066411']] },
-  { name: 'Cthulhu Realms', yr: '2014–18', desc: 'Digital card game. Built the game UI in Unity UGUI.', links: [['play store', 'https://play.google.com/store/apps/details?id=com.whitewizardgames.cthulhurealms'], ['video', 'https://www.youtube.com/watch?v=5GBTm6v-sNQ']] },
-  { name: 'Widget (UI) Manager', yr: '2016', desc: 'Code-free UI animation and management tool, adopted studio-wide and published on the Unity Asset Store.', links: [['asset store', 'https://assetstore.unity.com/packages/tools/gui/widget-ui-manager-57802'], ['video', 'https://www.youtube.com/watch?v=mzMo7oM5Qcw']] },
-  { name: 'RGB Box Runner', yr: '2015', desc: 'Fast-paced endless runner in C#/XNA, featured by Microsoft on the Windows Phone Store in 4 countries.', links: [['video', 'https://www.youtube.com/watch?v=dCu4jFfOUMU']] },
+  { id: 'pokervr', name: 'PokerVR', yr: '2018–19', icon: 'PV', desc: 'Social VR poker, ported to Oculus Quest as a ground-up rebuild and shipped on the store. I built the avatar-UI draw-call optimization (~40 to 1), automated the character pipeline, and set up studio-wide builds.', links: [['quest', 'https://www.oculus.com/experiences/quest/2257223740990488/'], ['gameplay', 'https://www.youtube.com/watch?v=tQGCVHw2rTk'], ['engineering notes', 'https://medium.com/@m.ahmed310.ma/thumbnail-creation-from-prefab-in-unity-pokervr-automated-system-for-draw-call-optimization-2f488d1d7131']] },
+  { id: 'eboh', name: 'Epic Battles of History', yr: '2014–18', video: '/media/games/eboh_game.mp4', desc: 'Historical strategy title. Led client-side architecture and core gameplay, built editor tooling, and mentored client engineers.', links: [['steam', 'https://store.steampowered.com/app/718750/Epic_Battles_of_History/']] },
+  { id: 'coda', name: 'Coda Quest', yr: '2014–18', icon: 'CQ', desc: 'Online educational RPG. Built crafting, in-game trading, NPC behavior, and client/server zone selection.', links: [['video', 'https://vimeo.com/202066411']] },
+  { id: 'cthulhu', name: 'Cthulhu Realms', yr: '2014–18', icon: 'CR', desc: 'Digital card game. Built the game UI in Unity UGUI.', links: [['play store', 'https://play.google.com/store/apps/details?id=com.whitewizardgames.cthulhurealms'], ['video', 'https://www.youtube.com/watch?v=5GBTm6v-sNQ']] },
+  { id: 'widget', name: 'Widget (UI) Manager', yr: '2016', icon: 'WM', desc: 'Code-free UI animation and management tool, adopted studio-wide and published on the Unity Asset Store.', links: [['asset store', 'https://assetstore.unity.com/packages/tools/gui/widget-ui-manager-57802'], ['video', 'https://www.youtube.com/watch?v=mzMo7oM5Qcw']] },
+  { id: 'rgb', name: 'RGB Box Runner', yr: '2015', icon: 'RB', desc: 'Fast-paced endless runner in C#/XNA, featured by Microsoft on the Windows Phone Store in 4 countries.', links: [['video', 'https://www.youtube.com/watch?v=dCu4jFfOUMU']] },
 ];
 ---
 <Base title="Projects · Muhammad Ahmed">
@@ -82,70 +94,127 @@ const games = [
       <p class="eyebrow">// projects</p>
       <h1 class="hero">Selected work.</h1>
 
-      <div class="cards">
+      <div class="work-grid">
         {projects.map((p) => (
-          <div class="card">
-            <p class="role">{p.eyebrow}</p>
-            <h3>{p.title}</h3>
-            <p class="pintro">{p.intro}</p>
-            <div class="metrics">
-              {p.metrics.map((m) => (<div class="metric"><b>{m[0]}</b><span>{m[1]}</span></div>))}
+          <button class="pcard" data-modal={p.id}>
+            <div class="pcard-media">
+              {p.preview.type === 'video'
+                ? <video class="card-video" src={`${b}${p.preview.src}#t=0.1`} muted loop playsinline preload="metadata"></video>
+                : <img class="card-img" src={`${b}${p.preview.src}`} alt="" loading="lazy" />}
+              <span class={`badge ${p.badgeType}`}>{p.badge}</span>
             </div>
-            <div class="blk">
-              <p class="l">what i built</p>
-              <ul>{p.built.map((x) => (<li>{x}</li>))}</ul>
+            <div class="pcard-body">
+              <h3>{p.title}</h3>
+              <p>{p.card}</p>
+              <span class="pcta">view case study &rarr;</span>
             </div>
-            {p.videos && (
-              <div class="media-stack">
-                {p.videos.filter((v) => v.full).map((v) => (
-                  <figure class="vid vfull">
-                    <video src={`${b}${v.src}#t=0.1`} controls muted playsinline loop preload="metadata"></video>
-                    <figcaption>{v.cap}{v.link && (<span class="cap-link"> &middot; <a href={v.link}>watch full &rarr;</a></span>)}</figcaption>
-                  </figure>
-                ))}
-                {p.videos.some((v) => !v.full) && (
-                  <div class={p.videoCols === 3 ? "vids cols3" : "vids"}>
-                    {p.videos.filter((v) => !v.full).map((v) => (
-                      <figure class="vid">
-                        <video src={`${b}${v.src}#t=0.1`} controls muted playsinline loop preload="metadata"></video>
-                        <figcaption>{v.cap}{v.link && (<span class="cap-link"> &middot; <a href={v.link}>watch full &rarr;</a></span>)}</figcaption>
-                      </figure>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
-            {p.shots && (
-              <div class="shots">
-                {p.shots.map((s) => (
-                  <figure class="shot">
-                    <img src={`${b}${s.src}`} alt={s.cap} loading="lazy" />
-                    <figcaption>{s.cap}</figcaption>
-                  </figure>
-                ))}
-              </div>
-            )}
-            {p.media && (<div class="proj-media">{p.media}</div>)}
-            <div class="links">{p.links.map((l) => (<a href={l[1]}>{l[0]}</a>))}</div>
-          </div>
+          </button>
         ))}
       </div>
 
       <h2>games &amp; tools</h2>
-      <div class="games">
+      <div class="games-grid">
         {games.map((g) => (
-          <div class="game">
-            <div class="game-head"><a href={g.links[0][1]}>{g.name}</a><span class="yr">{g.yr}</span></div>
-            <p class="game-desc">{g.desc}</p>
-            {g.video && (
-              <figure class="vid gvid">
-                <video src={`${b}${g.video}#t=0.1`} controls muted playsinline loop preload="metadata"></video>
-              </figure>
-            )}
-            <div class="glinks">{g.links.map((l) => (<a href={l[1]}>{l[0]}</a>))}</div>
-          </div>
+          <button class="gcard" data-modal={g.id}>
+            <div class="gcard-media">
+              {g.video
+                ? <video class="card-video" src={`${b}${g.video}#t=0.1`} muted loop playsinline preload="metadata"></video>
+                : <span class="gicon">{g.icon}</span>}
+            </div>
+            <div class="gcard-body"><h4>{g.name}</h4><span class="yr">{g.yr}</span></div>
+          </button>
         ))}
+      </div>
+    </div>
+
+    {projects.map((p) => (
+      <div class="tpl" hidden id={`tpl-${p.id}`}>
+        <p class="eyebrow">{p.eyebrow}</p>
+        <h3 class="modal-title">{p.detailTitle}</h3>
+        <p class="pintro">{p.intro}</p>
+        <div class="metrics">{p.metrics.map((m) => (<div class="metric"><b>{m[0]}</b><span>{m[1]}</span></div>))}</div>
+        <div class="blk"><p class="l">what i built</p><ul>{p.built.map((x) => (<li>{x}</li>))}</ul></div>
+        {p.videos && (
+          <div class="media-stack">
+            {p.videos.filter((v) => v.full).map((v) => (
+              <figure class="vid vfull">
+                <video src={`${b}${v.src}#t=0.1`} controls muted playsinline loop preload="metadata"></video>
+                <figcaption>{v.cap}{v.link && (<span class="cap-link"> &middot; <a href={v.link}>watch full &rarr;</a></span>)}</figcaption>
+              </figure>
+            ))}
+            {p.videos.some((v) => !v.full) && (
+              <div class={p.videoCols === 3 ? 'vids cols3' : 'vids'}>
+                {p.videos.filter((v) => !v.full).map((v) => (
+                  <figure class="vid"><video src={`${b}${v.src}#t=0.1`} controls muted playsinline loop preload="metadata"></video><figcaption>{v.cap}</figcaption></figure>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+        {p.shots && (
+          <div class="shots">
+            {p.shots.map((s) => (<figure class="shot"><img src={`${b}${s.src}`} alt={s.cap} loading="lazy" /><figcaption>{s.cap}</figcaption></figure>))}
+          </div>
+        )}
+        {p.media && (<div class="proj-media">{p.media}</div>)}
+        <div class="links">{p.links.map((l) => (<a href={l[1]}>{l[0]}</a>))}</div>
+      </div>
+    ))}
+    {games.map((g) => (
+      <div class="tpl" hidden id={`tpl-${g.id}`}>
+        <p class="eyebrow">games &amp; tools</p>
+        <h3 class="modal-title">{g.name} <span class="modal-yr">{g.yr}</span></h3>
+        <p class="pintro">{g.desc}</p>
+        {g.video && (<figure class="vid vfull"><video src={`${b}${g.video}#t=0.1`} controls muted playsinline loop preload="metadata"></video></figure>)}
+        <div class="links">{g.links.map((l) => (<a href={l[1]}>{l[0]}</a>))}</div>
+      </div>
+    ))}
+
+    <div id="modal" class="modal" hidden>
+      <div class="modal-panel" role="dialog" aria-modal="true">
+        <button class="modal-close" aria-label="Close">&#10005;</button>
+        <div id="modal-body"></div>
       </div>
     </div>
   </main>
 </Base>
+
+<script is:inline>
+  const modal = document.getElementById('modal');
+  const body = document.getElementById('modal-body');
+  const closeBtn = modal.querySelector('.modal-close');
+
+  function openModal(id) {
+    const tpl = document.getElementById('tpl-' + id);
+    if (!tpl) return;
+    body.innerHTML = tpl.innerHTML;
+    modal.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+    const hero = body.querySelector('video');
+    if (hero) { hero.muted = true; hero.play().catch(() => {}); }
+    closeBtn.focus();
+  }
+  function closeModal() {
+    modal.setAttribute('hidden', '');
+    body.querySelectorAll('video').forEach((v) => v.pause());
+    body.innerHTML = '';
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-modal]').forEach((el) => {
+    el.addEventListener('click', () => openModal(el.getAttribute('data-modal')));
+  });
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hasAttribute('hidden')) closeModal(); });
+
+  // autoplay card previews when on screen
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const v = entry.target;
+      if (entry.isIntersecting) { v.play().catch(() => {}); }
+      else { v.pause(); }
+    });
+  }, { threshold: 0.35 });
+  document.querySelectorAll('.card-video').forEach((v) => io.observe(v));
+</script>
