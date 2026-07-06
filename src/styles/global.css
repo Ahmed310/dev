@@ -313,7 +313,7 @@ body{position:relative;}
 .deco{pointer-events:none; opacity:.7;}
 .deco svg{display:block; height:78px; width:auto;}
 .deco-top{position:absolute; top:90px; right:2px;}
-.deco-bottom{position:absolute; top:152px; right:94px;}
+.deco-bottom{position:absolute; top:150px; right:20px;}
 @media (max-width:1180px){ .col-deco{display:none;} }
 .nd{fill:rgba(126,225,196,.72); animation:sa-pulse 3s ease-in-out infinite alternate;}
 .nd:nth-of-type(2){animation-delay:.5s} .nd:nth-of-type(3){animation-delay:1s} .nd:nth-of-type(4){animation-delay:1.5s} .nd:nth-of-type(5){animation-delay:.8s}
@@ -337,15 +337,14 @@ body{position:relative;}
 @media (prefers-reduced-motion:reduce){ .radar-sweep{animation:none !important;} }
 .deco.wander{animation:target-hunt 14s ease-in-out infinite;}
 @keyframes target-hunt{
- 0%,9%{transform:translate(0,-6px)}
- 15%,25%{transform:translate(-170px,18px)}
- 31%,43%{transform:translate(-360px,-8px)}
- 49%,60%{transform:translate(-250px,24px)}
- 66%,78%{transform:translate(-95px,6px)}
- 84%,94%{transform:translate(-320px,-14px)}
+ 0%,10%{transform:translate(0,-6px)}
+ 20%,32%{transform:translate(-44px,26px)}
+ 42%,54%{transform:translate(16px,52px)}
+ 64%,76%{transform:translate(-28px,10px)}
+ 86%,96%{transform:translate(6px,40px)}
  100%{transform:translate(0,-6px)}
 }
 
-.home-intro{max-width:600px;}
+.home-intro{max-width:470px;}
 .home-intro .hero{font-family:var(--mono); color:var(--accent); font-weight:500; font-size:19px; line-height:1.55; letter-spacing:0; margin:0 0 20px;}
 .home-intro .prose p{font-family:var(--mono); font-size:13.5px; line-height:1.85; color:#c2c8d2;}
