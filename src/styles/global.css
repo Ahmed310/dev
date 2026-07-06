@@ -261,6 +261,7 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify
 .gcard-body{padding:11px 13px 13px;}
 .gcard-body h4{margin:0; font-size:14px; color:#eef1f6; font-weight:600;}
 .gcard-body .yr{font-family:var(--mono); font-size:11.5px; color:var(--faint);}
+.gcard-body .gcta{display:block; margin-top:9px;}
 
 /* ===== modal ===== */
 .modal{position:fixed; inset:0; z-index:100; background:rgba(6,8,11,.78); backdrop-filter:blur(3px); display:flex; align-items:flex-start; justify-content:center; overflow-y:auto; padding:40px 20px;}
@@ -345,6 +346,6 @@ body{position:relative;}
  100%{transform:translate(0,-6px)}
 }
 
-.home-intro{max-width:470px;}
+.home-intro{max-width:600px;}
 .home-intro .hero{font-family:var(--mono); color:var(--accent); font-weight:500; font-size:19px; line-height:1.55; letter-spacing:0; margin:0 0 20px;}
 .home-intro .prose p{font-family:var(--mono); font-size:13.5px; line-height:1.85; color:#c2c8d2;}
