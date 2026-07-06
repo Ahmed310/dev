@@ -1,28 +1,13 @@
 ---
-import Base from '../layouts/Base.astro';
+const home = import.meta.env.BASE_URL;
 ---
-<Base title="About · Muhammad Ahmed" decor="about">
-  <main>
-    <div class="wrap">
-      <p class="eyebrow">// about</p>
-      <h1 class="hero">I build games and the real-time multiplayer systems behind them: the netcode, voice, and infrastructure for shared VR.</h1>
-
-      <div class="prose">
-        <p>I'm a game developer with 11+ years across shipped games and VR productivity apps. Most of that time has gone into one problem wearing different costumes: how do you keep a lot of people in sync, in real time, without the latency and the cloud bill getting out of hand.</p>
-
-        <p>At <strong>Arthur</strong> I built network LOD and optimized the networking so 100+ people could share a single VR room, and rebuilt the app around WebGL so it ran in a browser with no install. At <strong>Immersed</strong> I did the same kind of scaling on my own networking stack instead of a third-party one, which also cut the monthly infrastructure cost by around 65%.</p>
-
-        <p>That stack is open. I wrote <strong>FigNet</strong>, a transport-agnostic .NET networking framework, and <strong>Entangle</strong>, the room layer on top of it that scales a single room past 300 players with area-of-interest and delta replication. Alongside them I built <strong>FnVoice</strong>, a self-contained voice-chat engine (Opus + native WebRTC) that replaces a commercial dependency.</p>
-
-        <p>I care about clean architecture, but I trust measurements more than opinions. Most of what I've built started as a profiler screenshot and a number I wanted to move. I like working close to the metal (.NET Core, Unity, a fair amount of C++ interop), and I like handing other engineers tools that make the hard thing easy.</p>
-      </div>
-
-      <div class="stack">
-        <span class="k">stack</span>
-        <span class="v"><span>C#</span><span>.NET&nbsp;8</span><span>Unity</span><span>C/C++</span><span>WebGL</span><span>AWS</span><span>real-time&nbsp;netcode</span></span>
-      </div>
-
-      <p class="meta">Based in Lahore, Pakistan. Open to relocation and remote.</p>
-    </div>
-  </main>
-</Base>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${home}`} />
+    <link rel="canonical" href={home} />
+    <title>Redirecting…</title>
+  </head>
+  <body><a href={home}>Continue to home</a></body>
+</html>
