@@ -34,7 +34,7 @@ nav .wrap{display:flex; align-items:center; justify-content:space-between; heigh
 main{padding:72px 0 40px; min-height:calc(100vh - 200px);}
 .eyebrow{font-family:var(--mono); font-size:13px; color:var(--accent-dim); margin:0 0 20px; letter-spacing:1px;}
 h1.hero{
-  font-size:29px; line-height:1.35; font-weight:600; letter-spacing:-.4px;
+  font-size:22px; line-height:1.4; font-weight:600; letter-spacing:-.2px;
   margin:0 0 34px; color:#eef1f6; max-width:640px;
 }
 .lead{font-size:18px; color:#cdd3dd; max-width:600px; margin:0 0 30px;}
