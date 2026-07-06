@@ -345,3 +345,7 @@ body{position:relative;}
  84%,94%{transform:translate(-320px,-14px)}
  100%{transform:translate(0,-6px)}
 }
+
+.home-intro{max-width:600px;}
+.home-intro .hero{font-family:var(--mono); color:var(--accent); font-weight:500; font-size:19px; line-height:1.55; letter-spacing:0; margin:0 0 20px;}
+.home-intro .prose p{font-family:var(--mono); font-size:13.5px; line-height:1.85; color:#c2c8d2;}
