@@ -19,6 +19,11 @@ const rendered = await Promise.all(posts.map(async (p) => ({ p, Content: (await 
         <div class="blog-cards">
           {posts.map((p) => (
             <button class="pcard blogcard" data-modal={`post-${p.id}`}>
+              <div class="pcard-media">
+                {p.data.cover && p.data.cover.endsWith('.mp4') && (<video class="card-video" src={`${b}${p.data.cover}#t=0.1`} muted loop playsinline preload="metadata"></video>)}
+                {p.data.cover && !p.data.cover.endsWith('.mp4') && (<img class="card-img" src={`${b}${p.data.cover}`} alt="" loading="lazy" />)}
+                {p.data.tags && p.data.tags.length > 0 && (<span class="badge topic bl">{p.data.tags[0]}</span>)}
+              </div>
               <div class="blogcard-body">
                 <p class="bc-date">{fmt(p.data.pubDate)}</p>
                 <h3>{p.data.title}</h3>
