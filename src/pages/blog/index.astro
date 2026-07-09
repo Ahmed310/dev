@@ -34,10 +34,10 @@ const rendered = await Promise.all(posts.map(async (p) => ({ p, Content: (await 
           <ul class="postnav">
             {posts.map((p) => (
               <li>
-                <button class="postnav-item" data-modal={`post-${p.id}`}>
+                <a class="postnav-item" href={`${b}/blog/${p.id}`}>
                   <span class="pn-t">{p.data.title}</span>
                   <span class="pn-d">{fmt(p.data.pubDate)}</span>
-                </button>
+                </a>
               </li>
             ))}
           </ul>

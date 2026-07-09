@@ -365,7 +365,7 @@ body{position:relative;}
 .upcoming-h{margin-top:28px;}
 .postnav{list-style:none; padding:0; margin:0;}
 .postnav li{border-top:1px solid var(--border);}
-.postnav-item{width:100%; text-align:left; background:none; border:0; padding:11px 0; cursor:pointer; font:inherit; color:inherit; display:flex; flex-direction:column; gap:3px;}
+.postnav-item{width:100%; text-align:left; background:none; border:0; padding:11px 0; cursor:pointer; font:inherit; color:inherit; display:flex; flex-direction:column; gap:3px; text-decoration:none;}
 .postnav-item:hover .pn-t{color:var(--accent);}
 .pn-t{font-size:14px; color:#dfe3ea; line-height:1.35;}
 .pn-d{font-family:var(--mono); font-size:11px; color:var(--faint);}
