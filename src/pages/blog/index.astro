@@ -1,35 +1,98 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 const posts = (await getCollection('blog'))
   .filter((p) => !p.data.draft)
   .sort((a, z) => z.data.pubDate.getTime() - a.data.pubDate.getTime());
-const fmt = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+const fmt = (d) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+const rendered = await Promise.all(posts.map(async (p) => ({ p, Content: (await render(p)).Content })));
 ---
 <Base title="Blog · Muhammad Ahmed" decor="blog">
   <main>
-    <div class="wrap">
+    <div class="blog-shell">
       <p class="eyebrow">// blog</p>
       <h1 class="hero">Writing.</h1>
       <p class="lead">Deep dives on real-time networking and systems: how I built <strong>FigNet</strong>, <strong>Entangle</strong>, and <strong>FnVoice</strong>, and the C# and low-level tricks underneath.</p>
 
-      <div class="postlist">
-        {posts.map((p) => (
-          <div class="postrow">
-            <a class="pt" href={`${b}/blog/${p.id}`}>{p.data.title}</a>
-            <p class="pd">{fmt(p.data.pubDate)}</p>
-            <p>{p.data.description}</p>
-          </div>
-        ))}
-      </div>
+      <div class="blog-layout">
+        <div class="blog-cards">
+          {posts.map((p) => (
+            <button class="pcard blogcard" data-modal={`post-${p.id}`}>
+              <div class="blogcard-body">
+                <p class="bc-date">{fmt(p.data.pubDate)}</p>
+                <h3>{p.data.title}</h3>
+                <p class="bc-desc">{p.data.description}</p>
+                <span class="pcta">read &rarr;</span>
+              </div>
+            </button>
+          ))}
+        </div>
 
-      <h2>coming up</h2>
-      <ul class="upcoming">
-        <li>The Entangle architecture: rooms, entities, and the tick loop</li>
-        <li>Area-of-interest: a spatial grid that scales to hundreds of players</li>
-        <li>FnVoice: building a voice engine to replace a commercial dependency</li>
-      </ul>
+        <aside class="blog-aside">
+          <p class="aside-h">// all posts</p>
+          <ul class="postnav">
+            {posts.map((p) => (
+              <li>
+                <button class="postnav-item" data-modal={`post-${p.id}`}>
+                  <span class="pn-t">{p.data.title}</span>
+                  <span class="pn-d">{fmt(p.data.pubDate)}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+          <p class="aside-h upcoming-h">// coming up</p>
+          <ul class="upcoming">
+            <li>What a networking framework actually does</li>
+            <li>Transport abstraction: ENet, WebSocket, and friends</li>
+            <li>FnVoice: how real-time voice actually works</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+
+    {rendered.map(({ p, Content }) => (
+      <div class="tpl" hidden id={`tpl-post-${p.id}`}>
+        <p class="post-meta">{fmt(p.data.pubDate)}{p.data.tags ? '  ·  ' + p.data.tags.join('  ·  ') : ''}</p>
+        <h2 class="post-title modaltitle">{p.data.title}</h2>
+        <article class="post"><Content /></article>
+        <p class="backlink"><a href={`${b}/blog/${p.id}`}>open full page &#8599;</a></p>
+      </div>
+    ))}
+
+    <div id="modal" class="modal" hidden>
+      <div class="modal-panel" role="dialog" aria-modal="true">
+        <button class="modal-close" aria-label="Close">&#10005;</button>
+        <div id="modal-body"></div>
+      </div>
     </div>
   </main>
 </Base>
+
+<script is:inline>
+  const modal = document.getElementById('modal');
+  const body = document.getElementById('modal-body');
+  const closeBtn = modal.querySelector('.modal-close');
+
+  function openModal(id) {
+    const tpl = document.getElementById('tpl-' + id);
+    if (!tpl) return;
+    body.innerHTML = tpl.innerHTML;
+    modal.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+    modal.scrollTop = 0;
+    closeBtn.focus();
+  }
+  function closeModal() {
+    modal.setAttribute('hidden', '');
+    body.innerHTML = '';
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-modal]').forEach((el) => {
+    el.addEventListener('click', () => openModal(el.getAttribute('data-modal')));
+  });
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hasAttribute('hidden')) closeModal(); });
+</script>
