@@ -1,12 +1,11 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 const posts = (await getCollection('blog'))
   .filter((p) => !p.data.draft)
   .sort((a, z) => z.data.pubDate.getTime() - a.data.pubDate.getTime());
 const fmt = (d) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-const rendered = await Promise.all(posts.map(async (p) => ({ p, Content: (await render(p)).Content })));
 ---
 <Base title="Blog · Muhammad Ahmed" decor="blog">
   <main>
@@ -18,7 +17,7 @@ const rendered = await Promise.all(posts.map(async (p) => ({ p, Content: (await 
       <div class="blog-layout">
         <div class="blog-cards">
           {posts.map((p) => (
-            <button class="pcard blogcard" data-modal={`post-${p.id}`}>
+            <a class="pcard blogcard" href={`${b}/blog/${p.id}`}>
               <div class="pcard-media">
                 {p.data.cover && p.data.cover.endsWith('.mp4') && (<video class="card-video" src={`${b}${p.data.cover}#t=0.1`} muted loop playsinline preload="metadata"></video>)}
                 {p.data.cover && !p.data.cover.endsWith('.mp4') && (<img class="card-img" src={`${b}${p.data.cover}`} alt="" loading="lazy" />)}
@@ -30,7 +29,7 @@ const rendered = await Promise.all(posts.map(async (p) => ({ p, Content: (await 
                 <p class="bc-desc">{p.data.description}</p>
                 <span class="pcta">read &rarr;</span>
               </div>
-            </button>
+            </a>
           ))}
         </div>
 
@@ -48,56 +47,12 @@ const rendered = await Promise.all(posts.map(async (p) => ({ p, Content: (await 
           </ul>
           <p class="aside-h upcoming-h">// coming up</p>
           <ul class="upcoming">
-            <li>What a networking framework actually does</li>
-            <li>Transport abstraction: ENet, WebSocket, and friends</li>
-            <li>FnVoice: how real-time voice actually works</li>
+            <li>Rooms, entities, and the tick loop</li>
+            <li>State replication without the bandwidth blowup</li>
+            <li>Area of interest: scaling one room to hundreds</li>
           </ul>
         </aside>
       </div>
     </div>
-
-    {rendered.map(({ p, Content }) => (
-      <div class="tpl" hidden id={`tpl-post-${p.id}`}>
-        <p class="post-meta">{fmt(p.data.pubDate)}{p.data.tags ? '  ·  ' + p.data.tags.join('  ·  ') : ''}</p>
-        <h2 class="post-title modaltitle">{p.data.title}</h2>
-        <article class="post"><Content /></article>
-        <p class="backlink"><a href={`${b}/blog/${p.id}`}>open full page &#8599;</a></p>
-      </div>
-    ))}
-
-    <div id="modal" class="modal" hidden>
-      <div class="modal-panel" role="dialog" aria-modal="true">
-        <button class="modal-close" aria-label="Close">&#10005;</button>
-        <div id="modal-body"></div>
-      </div>
-    </div>
   </main>
 </Base>
-
-<script is:inline>
-  const modal = document.getElementById('modal');
-  const body = document.getElementById('modal-body');
-  const closeBtn = modal.querySelector('.modal-close');
-
-  function openModal(id) {
-    const tpl = document.getElementById('tpl-' + id);
-    if (!tpl) return;
-    body.innerHTML = tpl.innerHTML;
-    modal.removeAttribute('hidden');
-    document.body.style.overflow = 'hidden';
-    modal.scrollTop = 0;
-    closeBtn.focus();
-  }
-  function closeModal() {
-    modal.setAttribute('hidden', '');
-    body.innerHTML = '';
-    document.body.style.overflow = '';
-  }
-
-  document.querySelectorAll('[data-modal]').forEach((el) => {
-    el.addEventListener('click', () => openModal(el.getAttribute('data-modal')));
-  });
-  closeBtn.addEventListener('click', closeModal);
-  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hasAttribute('hidden')) closeModal(); });
-</script>

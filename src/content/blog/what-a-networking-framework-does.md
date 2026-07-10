@@ -1,7 +1,7 @@
 ---
 title: "What a networking framework actually does"
 description: "Between your Send call and the other player seeing it, a lot happens. Here is the whole path, using FigNet, the .NET networking framework I built, as the worked example."
-pubDate: 2026-07-07
+pubDate: 2026-07-09
 cover: "/media/blog/networking.svg"
 tags: ["networking", "fignet", "netcode"]
 ---
@@ -39,7 +39,17 @@ A few words make the rest of this readable.
 
 FigNet is built in layers, and each layer only knows about the one below it:
 
-> Providers (ENet, LiteNetLib, WebSocket, TCP) feed FigNet Core (peers, messages, sockets), which feeds Entangle (rooms, entities, the tick loop), which feeds the Unity client.
+<figure class="fig">
+<svg viewBox="0 0 640 292" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FigNet layer stack" font-family="'JetBrains Mono', ui-monospace, monospace">
+<defs><marker id="ah" markerWidth="9" markerHeight="9" refX="4.5" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 Z" fill="#7ee1c4" fill-opacity="0.6"/></marker></defs>
+<rect x="40" y="12" width="560" height="48" rx="9" fill="#7ee1c4" fill-opacity="0.06" stroke="#7ee1c4" stroke-opacity="0.45"/><text x="60" y="41" fill="#dfe3ea" font-size="14">Your game  ·  Unity client</text>
+<rect x="40" y="80" width="560" height="52" rx="9" fill="#7ee1c4" fill-opacity="0.06" stroke="#7ee1c4" stroke-opacity="0.45"/><text x="60" y="104" fill="#7ee1c4" font-size="14">Entangle</text><text x="60" y="121" fill="#8b93a1" font-size="12">rooms, entities, the tick loop</text>
+<rect x="40" y="152" width="560" height="52" rx="9" fill="#7ee1c4" fill-opacity="0.06" stroke="#7ee1c4" stroke-opacity="0.45"/><text x="60" y="176" fill="#7ee1c4" font-size="14">FigNet Core</text><text x="60" y="193" fill="#8b93a1" font-size="12">peers, messages, sockets</text>
+<rect x="40" y="224" width="560" height="52" rx="9" fill="#7ee1c4" fill-opacity="0.06" stroke="#7ee1c4" stroke-opacity="0.45"/><text x="60" y="248" fill="#7ee1c4" font-size="14">Providers</text><text x="60" y="265" fill="#8b93a1" font-size="12">ENet · LiteNetLib · WebSocket · TCP</text>
+<g stroke="#7ee1c4" stroke-opacity="0.5" stroke-width="1.4"><line x1="320" y1="62" x2="320" y2="76" marker-end="url(#ah)"/><line x1="320" y1="134" x2="320" y2="148" marker-end="url(#ah)"/><line x1="320" y1="206" x2="320" y2="220" marker-end="url(#ah)"/></g>
+</svg>
+<figcaption>FigNet is layered. Each layer only knows the one below it: your game talks to Entangle, Entangle to Core, Core to a provider.</figcaption>
+</figure>
 
 This post lives entirely in Core. Two rules shape everything in it: the game code should never know or care which transport it runs on, and the per frame hot path should allocate as close to zero as possible.
 

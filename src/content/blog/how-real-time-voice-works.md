@@ -37,7 +37,16 @@ That is the whole glossary. A signal made of samples, captured at a sample rate,
 
 Here is the path, and it has two golden rules baked into it: keep the game's main thread out of the heavy work, and respect those five goals at every step.
 
-> capture, detect speech, clean up, encode, send, jitter buffer, decode, play back
+<figure class="fig">
+<svg viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Voice pipeline" font-family="'JetBrains Mono', ui-monospace, monospace">
+<defs><marker id="ah" markerWidth="9" markerHeight="9" refX="4.5" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 Z" fill="#7ee1c4" fill-opacity="0.6"/></marker></defs>
+<rect x="40" y="12" width="560" height="58" rx="9" fill="#7ee1c4" fill-opacity="0.06" stroke="#7ee1c4" stroke-opacity="0.45"/><text x="60" y="36" fill="#7ee1c4" font-size="14">CAPTURE</text><text x="60" y="53" fill="#8b93a1" font-size="12">mic  ->  frame  ->  VAD  ->  clean up (AEC · NS · AGC)  ->  Opus encode</text>
+<rect x="40" y="120" width="560" height="44" rx="9" fill="#7ee1c4" fill-opacity="0.06" stroke="#7ee1c4" stroke-opacity="0.45"/><text x="60" y="144" fill="#7ee1c4" font-size="14">NETWORK</text><text x="60" y="161" fill="#8b93a1" font-size="12">send the packet (rides on FigNet)</text>
+<rect x="40" y="214" width="560" height="58" rx="9" fill="#7ee1c4" fill-opacity="0.06" stroke="#7ee1c4" stroke-opacity="0.45"/><text x="60" y="238" fill="#7ee1c4" font-size="14">PLAYBACK</text><text x="60" y="255" fill="#8b93a1" font-size="12">jitter buffer  ->  Opus decode  ->  volume ramp  ->  frames to samples  ->  speaker</text>
+<g stroke="#7ee1c4" stroke-opacity="0.5" stroke-width="1.4"><line x1="320" y1="72" x2="320" y2="116" marker-end="url(#ah)"/><line x1="320" y1="166" x2="320" y2="210" marker-end="url(#ah)"/></g>
+</svg>
+<figcaption>The voice pipeline, end to end. Capture and playback each run off the main thread; the network in the middle is just moving small Opus packets.</figcaption>
+</figure>
 
 Now the interesting part, what each stage actually does.
 

@@ -135,14 +135,14 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify
 .upcoming li{margin:0 0 5px;}
 
 /* blog post */
-.post-title{font-size:28px; font-weight:600; line-height:1.3; letter-spacing:-.3px; color:#eef1f6; margin:0 0 10px; max-width:660px;}
+.post-title{font-size:30px; font-weight:600; line-height:1.28; letter-spacing:-.3px; color:#eef1f6; margin:0 0 10px; max-width:none;}
 .post-meta{font-family:var(--mono); font-size:12.5px; color:var(--faint); margin:0 0 32px;}
-.post{max-width:680px;}
-.post p{color:#cdd3dd; margin:0 0 18px; line-height:1.78;}
+.post{max-width:none;}
+.post p{color:#cdd3dd; margin:0 0 17px; line-height:1.72; font-size:16px;}
 .post h2{font-size:20px; font-weight:600; color:#eef1f6; letter-spacing:-.2px; margin:36px 0 12px;}
 .post h3{font-size:17px; font-weight:600; color:#eef1f6; margin:28px 0 8px;}
 .post ul,.post ol{color:#cdd3dd; padding-left:22px; margin:0 0 18px;}
-.post li{margin:0 0 7px; line-height:1.7;}
+.post li{margin:0 0 7px; line-height:1.68; font-size:16px;}
 .post a{color:var(--accent);}
 .post strong{color:#7ee1c4; font-weight:700;}
 .post blockquote{border-left:2px solid var(--accent-dim); margin:0 0 18px; padding:2px 0 2px 16px; color:var(--muted);}
@@ -378,3 +378,8 @@ body{position:relative;}
 .badge.bl{left:10px; right:auto;}
 .blogcard .pcard-media{aspect-ratio:16/10;}
 .blogcard .pcard-media .card-img, .blogcard .pcard-media .card-video{width:100%; height:100%; object-fit:cover; display:block;}
+
+.postpage{max-width:800px;}
+.post .fig{margin:26px 0; text-align:center;}
+.post .fig svg{max-width:100%; height:auto;}
+.post .fig figcaption{font-family:var(--mono); font-size:12px; color:var(--muted); margin-top:10px; line-height:1.5;}
