@@ -11,6 +11,6 @@ npm-debug.log*
 .DS_Store
 
 # internal working files (kept local, not published)
-content/
+/content/
 preview/
 CONTENT_BRIEF.md
