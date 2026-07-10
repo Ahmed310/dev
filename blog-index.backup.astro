@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
+const posts = (await getCollection('blog'))
+  .filter((p) => !p.data.draft)
+  .sort((a, z) => z.data.pubDate.getTime() - a.data.pubDate.getTime());
+const fmt = (d) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+<Base title="Blog · Muhammad Ahmed" decor="blog">
+  <main>
+    <div class="blog-shell">
+      <p class="eyebrow">// blog</p>
+      <h1 class="hero">Writing.</h1>
+      <p class="lead">Deep dives on real-time networking and systems: how I built <strong>FigNet</strong>, <strong>Entangle</strong>, and <strong>FnVoice</strong>, and the C# and low-level tricks underneath.</p>
+
+      <div class="blog-layout">
+        <div class="blog-cards">
+          {posts.map((p) => (
+            <a class="pcard blogcard" href={`${b}/blog/${p.id}`}>
+              <div class="pcard-media">
+                {p.data.cover && p.data.cover.endsWith('.mp4') && (<video class="card-video" src={`${b}${p.data.cover}#t=0.1`} muted loop playsinline preload="metadata"></video>)}
+                {p.data.cover && !p.data.cover.endsWith('.mp4') && (<img class="card-img" src={`${b}${p.data.cover}`} alt="" loading="lazy" />)}
+                {p.data.tags && p.data.tags.length > 0 && (<span class="badge topic bl">{p.data.tags[0]}</span>)}
+              </div>
+              <div class="blogcard-body">
+                <p class="bc-date">{fmt(p.data.pubDate)}</p>
+                <h3>{p.data.title}</h3>
+                <p class="bc-desc">{p.data.description}</p>
+                <span class="pcta">read &rarr;</span>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <aside class="blog-aside">
+          <p class="aside-h">// all posts</p>
+          <ul class="postnav">
+            {posts.map((p) => (
+              <li>
+                <a class="postnav-item" href={`${b}/blog/${p.id}`}>
+                  <span class="pn-t">{p.data.title}</span>
+                  <span class="pn-d">{fmt(p.data.pubDate)}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p class="aside-h upcoming-h">// coming up</p>
+          <ul class="upcoming">
+            <li>Rooms, entities, and the tick loop</li>
+            <li>State replication without the bandwidth blowup</li>
+            <li>Area of interest: scaling one room to hundreds</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </main>
+</Base>
