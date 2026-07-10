@@ -351,9 +351,9 @@ body{position:relative;}
 .home-intro .prose p{font-family:var(--mono); font-size:13.5px; line-height:1.85; color:#c2c8d2;}
 
 /* blog page: cards + right nav + modal */
-.blog-shell{max-width:940px; margin:0 auto; padding:0 24px;}
-.blog-layout{display:grid; grid-template-columns:minmax(0,1fr) 250px; gap:36px; align-items:start; margin-top:10px;}
-.blog-cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; align-content:start;}
+.blog-shell{max-width:1080px; margin:0 auto; padding:0 24px;}
+.blog-layout{display:grid; grid-template-columns:minmax(0,1fr) 230px; gap:36px; align-items:start; margin-top:10px;}
+.blog-cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(228px,1fr)); gap:16px; align-content:start;}
 .blogcard{align-items:stretch;}
 .blogcard-body{padding:16px; display:flex; flex-direction:column; flex:1 1 auto; text-align:left;}
 .bc-date{font-family:var(--mono); font-size:11.5px; color:var(--faint); margin:0 0 9px;}
