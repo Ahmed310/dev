@@ -128,7 +128,7 @@ const games = [
 
       <div class="work-grid">
         {projects.map((p) => (
-          <button class="pcard" data-modal={p.id}>
+          <button class="pcard" data-modal={p.id} data-track="detail_open" data-track-project={p.id}>
             <div class="pcard-media">
               {p.preview.type === 'video'
                 ? <video class="card-video" src={`${b}${p.preview.src}#t=0.1`} muted loop playsinline preload="metadata"></video>
@@ -147,7 +147,7 @@ const games = [
       <h2>games &amp; tools</h2>
       <div class="games-grid">
         {games.map((g) => (
-          <button class="gcard" data-modal={g.id}>
+          <button class="gcard" data-modal={g.id} data-track="detail_open" data-track-project={g.id}>
             <div class="gcard-media">
               {g.vimeo
                 ? <iframe class="card-video vimeo-bg" src={`https://player.vimeo.com/video/${g.vimeo}?background=1&muted=1&autoplay=1&loop=1&autopause=0`} frameborder="0" allow="autoplay" loading="lazy" tabindex="-1"></iframe>
@@ -168,21 +168,21 @@ const games = [
         <p class="eyebrow">{p.eyebrow}</p>
         <h3 class="modal-title">{p.detailTitle}</h3>
         <p class="pintro" set:html={p.intro}></p>
-        {p.youtube && (<figure class="vid vfull"><div class="vimeo-wrap"><iframe src={`https://www.youtube.com/embed/${p.youtube}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>{p.youtubeCap && (<figcaption>{p.youtubeCap}</figcaption>)}</figure>)}
+        {p.youtube && (<figure class="vid vfull"><div class="vimeo-wrap"><iframe src={`https://www.youtube.com/embed/${p.youtube}?enablejsapi=1`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>{p.youtubeCap && (<figcaption>{p.youtubeCap}</figcaption>)}</figure>)}
         <div class="metrics">{p.metrics.map((m) => (<div class="metric"><b>{m[0]}</b><span>{m[1]}</span></div>))}</div>
         <div class="blk"><p class="l">what i built</p><ul>{p.built.map((x) => (<li set:html={x}></li>))}</ul></div>
         {p.videos && (
           <div class="media-stack">
             {p.videos.filter((v) => v.full).map((v) => (
               <figure class="vid vfull">
-                <video src={`${b}${v.src}#t=0.1`} controls muted playsinline loop preload="metadata"></video>
-                <figcaption>{v.cap}{v.link && (<span class="cap-link"> &middot; <a href={v.link}>watch full &rarr;</a></span>)}</figcaption>
+                <video src={`${b}${v.src}#t=0.1`} controls muted playsinline loop preload="metadata" data-track-project={p.id}></video>
+                <figcaption>{v.cap}{v.link && (<span class="cap-link"> &middot; <a href={v.link} data-track="project_link_click" data-track-label="watch_full" data-track-project={p.id}>watch full &rarr;</a></span>)}</figcaption>
               </figure>
             ))}
             {p.videos.some((v) => !v.full) && (
               <div class={p.videoCols === 3 ? 'vids cols3' : 'vids'}>
                 {p.videos.filter((v) => !v.full).map((v) => (
-                  <figure class="vid"><video src={`${b}${v.src}#t=0.1`} controls muted playsinline loop preload="metadata"></video><figcaption>{v.cap}</figcaption></figure>
+                  <figure class="vid"><video src={`${b}${v.src}#t=0.1`} controls muted playsinline loop preload="metadata" data-track-project={p.id}></video><figcaption>{v.cap}</figcaption></figure>
                 ))}
               </div>
             )}
@@ -194,8 +194,8 @@ const games = [
           </div>
         )}
         {p.media && (<div class="proj-media">{p.media}</div>)}
-        {p.demos && (<div class="embed-2">{p.demos.map((d) => (<figure class="vid">{d.yt && (<div class="vimeo-wrap"><iframe src={`https://www.youtube.com/embed/${d.yt}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>)}{d.src && (<video src={`${b}${d.src}#t=0.1`} controls muted playsinline loop preload="metadata"></video>)}<figcaption>{d.cap}{d.repo && (<span class="cap-link"> &middot; <a href={d.repo}>repo &rarr;</a></span>)}</figcaption></figure>))}</div>)}
-        <div class="links">{p.links.map((l) => (<a href={l[1]}>{l[0]}</a>))}</div>
+        {p.demos && (<div class="embed-2">{p.demos.map((d) => (<figure class="vid">{d.yt && (<div class="vimeo-wrap"><iframe src={`https://www.youtube.com/embed/${d.yt}?enablejsapi=1`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>)}{d.src && (<video src={`${b}${d.src}#t=0.1`} controls muted playsinline loop preload="metadata" data-track-project={p.id}></video>)}<figcaption>{d.cap}{d.repo && (<span class="cap-link"> &middot; <a href={d.repo} data-track="project_link_click" data-track-label="repo" data-track-project={p.id}>repo &rarr;</a></span>)}</figcaption></figure>))}</div>)}
+        <div class="links">{p.links.map((l) => (<a href={l[1]} data-track="project_link_click" data-track-label={l[0]} data-track-project={p.id}>{l[0]}</a>))}</div>
       </div>
     ))}
     {games.map((g) => (
@@ -203,14 +203,14 @@ const games = [
         <p class="eyebrow">games &amp; tools</p>
         <h3 class="modal-title">{g.name} <span class="modal-yr">{g.yr}</span></h3>
         <p class="pintro" set:html={g.desc}></p>
-        {g.demo && (<figure class="vid vfull"><div class="vimeo-wrap"><iframe src={`https://www.youtube.com/embed/${g.demo.yt}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><figcaption>{g.demo.cap}</figcaption></figure>)}
+        {g.demo && (<figure class="vid vfull"><div class="vimeo-wrap"><iframe src={`https://www.youtube.com/embed/${g.demo.yt}?enablejsapi=1`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><figcaption>{g.demo.cap}</figcaption></figure>)}
         {g.youtube
-          ? (<figure class="vid vfull"><div class="vimeo-wrap"><iframe src={`https://www.youtube.com/embed/${g.youtube}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></figure>)
+          ? (<figure class="vid vfull"><div class="vimeo-wrap"><iframe src={`https://www.youtube.com/embed/${g.youtube}?enablejsapi=1`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></figure>)
           : g.vimeo
           ? (<figure class="vid vfull"><div class="vimeo-wrap"><iframe src={`https://player.vimeo.com/video/${g.vimeo}?title=0&byline=0&portrait=0`} frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></figure>)
-          : g.video && (<figure class="vid vfull"><video src={`${b}${g.video}#t=0.1`} controls muted playsinline loop preload="metadata"></video>{g.videoCap && (<figcaption>{g.videoCap}</figcaption>)}</figure>)}
-        {g.body && g.body.map((sec) => (<div class={sec.yt ? "secrow" : "pblock"}><div class="seccol"><h4>{sec.h}</h4><p>{sec.p}</p>{sec.post && (<p class="secmore"><a href={sec.post[1]}>{sec.post[0]} &rarr;</a></p>)}</div>{sec.yt && (<figure class="vid secvid2"><div class="vimeo-wrap"><iframe src={`https://www.youtube.com/embed/${sec.yt}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><figcaption>{sec.cap}</figcaption></figure>)}</div>))}
-        {g.links && g.links.length > 0 && (<div class="links">{g.links.map((l) => (<a href={l[1]}>{l[0]}</a>))}</div>)}
+          : g.video && (<figure class="vid vfull"><video src={`${b}${g.video}#t=0.1`} controls muted playsinline loop preload="metadata" data-track-project={g.id}></video>{g.videoCap && (<figcaption>{g.videoCap}</figcaption>)}</figure>)}
+        {g.body && g.body.map((sec) => (<div class={sec.yt ? "secrow" : "pblock"}><div class="seccol"><h4>{sec.h}</h4><p>{sec.p}</p>{sec.post && (<p class="secmore"><a href={sec.post[1]} data-track="project_link_click" data-track-label="writeup" data-track-project={g.id}>{sec.post[0]} &rarr;</a></p>)}</div>{sec.yt && (<figure class="vid secvid2"><div class="vimeo-wrap"><iframe src={`https://www.youtube.com/embed/${sec.yt}?enablejsapi=1`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><figcaption>{sec.cap}</figcaption></figure>)}</div>))}
+        {g.links && g.links.length > 0 && (<div class="links">{g.links.map((l) => (<a href={l[1]} data-track="project_link_click" data-track-label={l[0]} data-track-project={g.id}>{l[0]}</a>))}</div>)}
       </div>
     ))}
 
@@ -235,7 +235,7 @@ const games = [
     modal.removeAttribute('hidden');
     document.body.style.overflow = 'hidden';
     const hero = body.querySelector('video');
-    if (hero) { hero.muted = true; hero.play().catch(() => {}); }
+    if (hero) { hero.muted = true; hero.dataset.autoplayed = '1'; hero.play().catch(() => {}); }
     closeBtn.focus();
   }
   function closeModal() {

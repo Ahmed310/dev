@@ -28,5 +28,64 @@ const { title, description = 'Game developer building real-time multiplayer syst
     <Nav />
     <slot />
     <Footer />
+    <script>
+      import { initAnalytics, track } from '../lib/analytics';
+
+      initAnalytics();
+
+      function onActivate(event: MouseEvent) {
+        const el = (event.target as Element).closest<HTMLElement>('[data-track]');
+        if (!el) return;
+        // auxclick covers middle-click (open in new tab) — only meaningful on
+        // real links; ignore right-click and middle-click on buttons.
+        if (event.type === 'auxclick' && (event.button !== 1 || !el.hasAttribute('href'))) return;
+        const params: Record<string, string> = {};
+        if (el.dataset.trackLabel) params.label = el.dataset.trackLabel;
+        if (el.dataset.trackProject) params.project = el.dataset.trackProject;
+        const href = el.getAttribute('href');
+        if (href) params.link_url = href;
+        track(el.dataset.track!, params);
+      }
+
+      document.addEventListener('click', onActivate);
+      document.addEventListener('auxclick', onActivate);
+
+      // Video engagement. Media events don't bubble, so listen in the capture
+      // phase. Ambient previews (no controls, muted autoplay on scroll) are
+      // not engagement and are skipped; so is the modal's programmatic hero
+      // autoplay, which stamps data-autoplayed before calling play().
+      function videoParams(video: HTMLVideoElement): Record<string, string> {
+        const file = video.currentSrc.split('/').pop()?.split('#')[0] || 'video';
+        const params: Record<string, string> = { label: video.dataset.trackLabel ?? file };
+        if (video.dataset.trackProject) params.project = video.dataset.trackProject;
+        return params;
+      }
+
+      const played = new WeakSet<HTMLVideoElement>();
+      document.addEventListener(
+        'play',
+        (event) => {
+          const video = event.target;
+          if (!(video instanceof HTMLVideoElement) || !video.controls) return;
+          if (video.dataset.autoplayed) {
+            delete video.dataset.autoplayed;
+            return;
+          }
+          if (played.has(video)) return;
+          played.add(video);
+          track('video_play', videoParams(video));
+        },
+        true,
+      );
+      document.addEventListener(
+        'ended',
+        (event) => {
+          const video = event.target;
+          if (!(video instanceof HTMLVideoElement) || !video.controls) return;
+          track('video_complete', videoParams(video));
+        },
+        true,
+      );
+    </script>
   </body>
 </html>
